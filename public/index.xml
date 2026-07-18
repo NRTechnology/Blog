@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>NR Tech Blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on NR Tech Blog</description>
+    <generator>Hugo</generator>
+    <language>id-ID</language>
+    <lastBuildDate>Sat, 18 Jul 2026 12:00:00 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cara Install Docker di Ubuntu Server</title>
+      <link>http://localhost:1313/posts/install-docker-ubuntu/</link>
+      <pubDate>Sat, 18 Jul 2026 12:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/posts/install-docker-ubuntu/</guid>
+      <description>&lt;p&gt;Docker adalah platform container yang memungkinkan kita menjalankan aplikasi dalam lingkungan yang terisolasi.&lt;/p&gt;
+&lt;h2 id=&#34;persiapan&#34;&gt;Persiapan&lt;/h2&gt;
+&lt;p&gt;Pastikan sistem Ubuntu sudah diperbarui.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt upgrade -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;install-docker&#34;&gt;Install Docker&lt;/h2&gt;
+&lt;p&gt;Install Docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install docker.io
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Cek versi Docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;docker --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;menjalankan-docker&#34;&gt;Menjalankan Docker&lt;/h2&gt;
+&lt;p&gt;Aktifkan service Docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl enable docker
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl start docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Cek status Docker:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo systemctl status docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;kesimpulan&#34;&gt;Kesimpulan&lt;/h2&gt;
+&lt;p&gt;Docker telah berhasil diinstal dan siap digunakan.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Tentang</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;Selamat datang di **NR Tech Blog**.&lt;/p&gt;
+&lt;p&gt;Blog ini berisi catatan, tutorial, dokumentasi, dan pengalaman seputar teknologi informasi.&lt;/p&gt;
+&lt;p&gt;Topik yang dibahas antara lain:&lt;/p&gt;
+&lt;p&gt;- Linux dan Ubuntu Server&lt;/p&gt;
+&lt;p&gt;- Docker dan Container&lt;/p&gt;
+&lt;p&gt;- Network dan Infrastruktur&lt;/p&gt;
+&lt;p&gt;- FortiGate dan Network Security&lt;/p&gt;
+&lt;p&gt;- ASP.NET Core&lt;/p&gt;
+&lt;p&gt;- Web Development&lt;/p&gt;
+&lt;p&gt;- Cyber Security&lt;/p&gt;
+&lt;p&gt;- System Administration&lt;/p&gt;
+&lt;p&gt;Blog ini dibuat sebagai tempat berbagi pengetahuan, dokumentasi, dan catatan teknis yang diharapkan dapat bermanfaat bagi pembaca.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

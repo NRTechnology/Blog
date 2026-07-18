@@ -1,0 +1,87 @@
+baseURL = 'https://example.org/'
+locale = 'id-ID'
+defaultContentLanguage = 'id'
+title = 'NR Tech Blog'
+theme = 'PaperMod'
+
+# =========================
+# MENU UTAMA
+# =========================
+
+[[menu.main]]
+identifier = 'home'
+name = 'Home'
+url = '/'
+weight = 10
+
+[[menu.main]]
+identifier = 'artikel'
+name = 'Artikel'
+url = '/posts/'
+weight = 20
+
+[[menu.main]]
+identifier = 'kategori'
+name = 'Kategori'
+url = '/categories/'
+weight = 30
+
+[[menu.main]]
+identifier = 'tags'
+name = 'Tags'
+url = '/tags/'
+weight = 40
+
+[[menu.main]]
+identifier = 'arsip'
+name = 'Arsip'
+url = '/archives/'
+weight = 50
+
+[[menu.main]]
+identifier = 'tentang'
+name = 'Tentang'
+url = '/about/'
+weight = 60
+
+# =========================
+# PAPERMOD CONFIGURATION
+# =========================
+
+[params]
+env = 'production'
+description = 'Catatan dan artikel seputar teknologi, pengembangan aplikasi, jaringan, server, dan keamanan informasi.'
+author = 'NR Technology'
+
+# Menampilkan tombol share artikel
+ShowShareButtons = true
+
+# Menampilkan estimasi waktu membaca
+ShowReadingTime = true
+
+# Menampilkan breadcrumb
+ShowBreadCrumbs = true
+
+# Menampilkan navigasi artikel sebelumnya/berikutnya
+ShowPostNavLinks = true
+
+# Menampilkan tombol copy pada code block
+ShowCodeCopyButtons = true
+
+# Menampilkan daftar isi
+ShowToc = true
+
+# Daftar isi terbuka secara default
+TocOpen = false
+
+# =========================
+# HOME INFO
+# =========================
+
+[params.homeInfoParams]
+Title = 'Selamat Datang di NR Tech Blog 👋'
+Content = '''
+Catatan, tutorial, dan dokumentasi seputar **Teknologi Informasi**.
+
+Berbagi pengalaman tentang **Linux, Docker, Network, FortiGate, ASP.NET Core, Cyber Security**, dan berbagai teknologi lainnya.
+'''
