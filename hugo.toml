@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://github.com/NRTechnology/Blog/'
 locale = 'id-ID'
 defaultContentLanguage = 'id'
 title = 'NR Tech Blog'
