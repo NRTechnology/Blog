@@ -113,6 +113,7 @@ Brebes WAF sebaiknya tidak berdiri sendiri sebagai satu-satunya mekanisme keaman
 
 Perlindungan aplikasi web dapat dibangun menggunakan beberapa lapisan:
 
+```text
 Internet
     │
     ▼
@@ -132,6 +133,7 @@ Application
     │
     ▼
 Database
+```
 
 Setiap lapisan memiliki fungsi keamanan yang berbeda.
 
