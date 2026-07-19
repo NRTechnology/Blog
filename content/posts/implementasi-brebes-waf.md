@@ -2,7 +2,6 @@
 date = '2026-07-19T15:00:00+07:00'
 draft = false
 title = 'Implementasi Brebes WAF dengan Nginx dan ModSecurity'
-title = 'Implementasi Brebes WAF dengan Nginx dan ModSecurity'
 categories = ['Cyber Security']
 tags = [
     'Brebes WAF',
