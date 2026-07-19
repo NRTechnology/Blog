@@ -8,7 +8,7 @@ url = '/about/'
 
 
 
-Selamat datang di \*\*NR Tech Blog\*\*.
+Selamat datang di \*\*NRTechnology Blog\*\*.
 
 
 
