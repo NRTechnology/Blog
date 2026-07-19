@@ -34,6 +34,7 @@ Dalam arsitektur ini, pengguna dari internet tidak berkomunikasi secara langsung
 
 Secara sederhana, arsitekturnya adalah sebagai berikut:
 
+```text
 Internet
     │
     ▼
@@ -53,6 +54,7 @@ Web Server / Reverse Proxy
     │
     ▼
 Aplikasi Web
+```
 
 Dengan arsitektur tersebut, WAF berfungsi sebagai salah satu lapisan pertahanan sebelum request mencapai aplikasi.
 
@@ -76,6 +78,7 @@ Ketika pengguna mengakses sebuah aplikasi, request akan diterima terlebih dahulu
 
 Alur request menjadi:
 
+```text
 Client
     │
     │ HTTPS Request
@@ -88,6 +91,7 @@ Origin Web Server
     │
     ▼
 Application
+```
 
 Apabila request terdeteksi sebagai serangan, WAF dapat menghentikan request tersebut sebelum mencapai aplikasi.
 
