@@ -516,6 +516,7 @@ Berikut script lengkap yang digunakan pada implementasi ini.
 #
 # PENTING:
 # Ubah VPN_NETWORK sebelum menjalankan script.
+# script by NR Technology & ChatGPT
 # ============================================================
 
 set -e
