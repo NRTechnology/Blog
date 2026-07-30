@@ -1,8 +1,10 @@
-+++ date = '2026-07-30T12:00:00+07:00' draft = false title =
-'Pelindungan Data Pribadi Pasien: Panduan Kesadaran Keamanan Informasi'
-categories = \['Cybersecurity'\] tags = \['Pelindungan Data Pribadi',
-'Keamanan Informasi', 'Security Awareness', 'Data Pasien', 'RSUD',
-'Cybersecurity'\] +++
++++
+date = '2026-07-30T12:00:00+07:00'
+draft = false
+title = 'Pelindungan Data Pribadi Pasien: Panduan Kesadaran Keamanan Informasi'
+categories = ['Cybersecurity']
+tags = ['Pelindungan Data Pribadi', 'Keamanan Informasi', 'Security Awareness', 'Data Pasien', 'RSUD', 'Cybersecurity']
++++
 
 Data pasien merupakan salah satu aset informasi penting di lingkungan
 rumah sakit. Pelindungan data pasien tidak hanya bergantung pada
