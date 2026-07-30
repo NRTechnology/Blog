@@ -1,10 +1,8 @@
 +++
-title = 'Buku'
+title = 'Buku & Publikasi'
 description = 'Buku dan publikasi NR Technology'
 draft = false
 +++
-
-# Buku & Publikasi
 
 Halaman ini berisi buku, e-book, dan publikasi yang disusun sebagai bagian dari dokumentasi, pembelajaran, dan berbagi pengetahuan di bidang teknologi informasi dan keamanan siber.
 
