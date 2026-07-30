@@ -1,4 +1,4 @@
-baseURL = 'https://github.com/NRTechnology/Blog/'
+baseURL = 'https://nrtechnology.github.io/Blog/'
 locale = 'id-ID'
 defaultContentLanguage = 'id'
 title = 'NR Tech Blog'
@@ -19,6 +19,12 @@ identifier = 'artikel'
 name = 'Artikel'
 url = '/posts/'
 weight = 20
+
+[[menu.main]]
+identifier = 'buku'
+name = 'Buku'
+url = '/books/'
+weight = 30
 
 [[menu.main]]
 identifier = 'kategori'
