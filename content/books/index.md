@@ -38,7 +38,7 @@ Pokok pembahasan meliputi:
 
 ### 📖 Baca Selengkapnya
 
-[Resume dan informasi buku →](/posts/pelindungan-data-pribadi-pasien/)
+[Resume dan informasi buku →](/Blog/posts/pelindungan-data-pribadi-pasien/)
 
 ---
 
