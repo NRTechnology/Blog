@@ -41,62 +41,82 @@ Panduan ini menjelaskan langkah demi langkah instalasi dan deployment aplikasi L
 
 Sebagai contoh, aplikasi yang digunakan dalam panduan ini adalah:
 
-    Aplikasi Perpustakaan
+```text
+Aplikasi Perpustakaan
+```
 
 Domain contoh:
 
-    https://perpustakaan.example.go.id
+```text
+https://perpustakaan.example.go.id
+```
 
 Nama aplikasi:
 
-    perpustakaan
+```text
+perpustakaan
+```
 
 Source code aplikasi:
 
-    /var/apps/perpustakaan/app
+```text
+/var/apps/perpustakaan/app
+```
 
 Persistent data:
 
-    /var/apps/perpustakaan/data
+```text
+/var/apps/perpustakaan/data
+```
 
 Konfigurasi Docker:
 
-    /opt/docker/apps/perpustakaan
+```text
+/opt/docker/apps/perpustakaan
+```
 
 Arsitektur deployment:
 
-    Internet
-       |
-       | HTTPS
-       v
-    Reverse Proxy Nginx
-       |
-       | HTTP :8080
-       v
-    Nginx Application Server
-       |
-       | Unix Socket
-       | /run/php/perpustakaan.sock
-       v
-    Docker PHP-FPM 8.3
-       |
-       +---- Laravel Source (Read Only)
-       |
-       +---- Persistent Storage (Read Write)
-       |
-       +---- MySQL Unix Socket
-                  |
-                  v
-               MySQL Server
+```text
+Internet
+   |
+   | HTTPS
+   v
+Reverse Proxy Nginx
+   |
+   | HTTP :8080
+   v
+Nginx Application Server
+   |
+   | Unix Socket
+   | /run/php/perpustakaan.sock
+   v
+Docker PHP-FPM 8.3
+   |
+   +---- Laravel Source (Read Only)
+   |
+   +---- Persistent Storage (Read Write)
+   |
+   +---- MySQL Unix Socket
+              |
+              v
+           MySQL Server
+```
 
-Pada arsitektur ini, source code Laravel dipisahkan dari data runtime. Source code dikelola menggunakan Git, sedangkan file upload, cache, session, log, dan data runtime Laravel disimpan pada persistent storage.
+Pada arsitektur ini, source code Laravel dipisahkan dari data runtime.
+
+Source code dikelola menggunakan Git, sedangkan file upload, cache, session, log, dan data runtime Laravel disimpan pada persistent storage.
+
+Source Laravel dipasang **read-only pada container PHP-FPM runtime**.
+
+Pada proses deployment tertentu, misalnya ketika menjalankan Composer, temporary container dapat diberikan akses write ke source agar dependency pada direktori `vendor/` dapat diperbarui.
 
 Tujuannya adalah agar update aplikasi tidak menghapus data yang dihasilkan selama aplikasi berjalan.
 
 
 ## 2. Struktur Direktori
 
-Source code aplikasi dan data runtime sebaiknya dipisahkan.
+Source code aplikasi dan data runtime dipisahkan.
 
 Struktur yang digunakan:
 
@@ -110,7 +130,7 @@ Struktur yang digunakan:
     └── bootstrap-cache/
 ```
 
-Konfigurasi Docker disimpan pada:
+Konfigurasi Docker:
 
 ```text
 /opt/docker/apps/perpustakaan/
@@ -127,6 +147,11 @@ Buat direktori aplikasi:
 
 ```bash
 mkdir -p /var/apps/perpustakaan
+```
+
+Masuk:
+
+```bash
 cd /var/apps/perpustakaan
 ```
 
@@ -199,29 +224,28 @@ Dengan konfigurasi tersebut, hanya owner dan group yang memiliki akses terhadap 
 
 ## 5. Konfigurasi Docker PHP 8.3
 
-Buat direktori konfigurasi:
+Buat direktori:
 
 ```bash
 mkdir -p /opt/docker/apps/perpustakaan
 ```
 
-Buat:
+Buat file:
 
 ```text
 /opt/docker/apps/perpustakaan/docker-compose.yml
 ```
 
-Contoh konfigurasi:
+Isi:
 
 ```yaml
 services:
 
   app:
     container_name: perpustakaan-php
-    read_only: true
-
     image: local/php:8.3
 
+    read_only: true
     restart: unless-stopped
     init: true
     stop_grace_period: 30s
@@ -230,6 +254,7 @@ services:
       - no-new-privileges:true
 
     volumes:
+
       # PHP-FPM Unix Socket
       - /run/php:/run/php
 
@@ -242,7 +267,7 @@ services:
       # PHP-FPM configuration
       - /opt/docker/apps/perpustakaan/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
 
-      # Laravel source - READ ONLY
+      # Laravel source - READ ONLY pada runtime
       - /var/apps/perpustakaan/app:/var/www/html:ro
 
       # Laravel writable runtime
@@ -273,7 +298,7 @@ services:
         max-file: "5"
 ```
 
-> **Catatan:** `local/php:8.3` pada contoh di atas merupakan image PHP 8.3 yang telah disiapkan sebelumnya dan harus memiliki PHP-FPM, Composer, serta ekstensi PHP yang dibutuhkan Laravel.
+> **Catatan:** `local/php:8.3` merupakan image PHP 8.3 yang telah disiapkan sebelumnya dan harus memiliki PHP-FPM, Composer, serta ekstensi PHP yang dibutuhkan aplikasi Laravel.
 
 
 ## 6. Konfigurasi PHP-FPM
@@ -319,7 +344,7 @@ Socket tersebut digunakan Nginx untuk meneruskan request PHP ke PHP-FPM di dalam
 
 ## 7. Menjalankan Container
 
-Masuk ke direktori:
+Masuk:
 
 ```bash
 cd /opt/docker/apps/perpustakaan
@@ -331,7 +356,7 @@ Jalankan:
 docker compose up -d
 ```
 
-Periksa container:
+Periksa:
 
 ```bash
 docker ps -a --filter name=perpustakaan-php
@@ -343,26 +368,46 @@ Target:
 Up ... (healthy)
 ```
 
-Periksa Unix Socket:
+Periksa PHP-FPM Unix Socket:
 
 ```bash
-ls -lah /run/php/
+ls -lah /run/php/perpustakaan.sock
 ```
 
-Seharusnya tersedia:
-
-```text
-perpustakaan.sock
-```
-
-Periksa detail socket:
+Periksa detail:
 
 ```bash
 stat /run/php/perpustakaan.sock
 ```
 
 
-## 8. Memeriksa Docker Mount
+## 8. Memeriksa MySQL Unix Socket
+
+Karena MySQL berjalan pada host dan aplikasi akan mengaksesnya menggunakan Unix Socket, periksa:
+
+```bash
+ls -lah /run/mysqld/mysqld.sock
+```
+
+Pastikan socket tersedia.
+
+Periksa dari dalam container:
+
+```bash
+docker exec perpustakaan-php \
+  ls -lah /run/mysqld/mysqld.sock
+```
+
+Jika socket terlihat dari dalam container, bind mount:
+
+```yaml
+- /run/mysqld:/run/mysqld:ro
+```
+
+telah bekerja.
+
+
+## 9. Memeriksa Docker Mount
 
 Jalankan:
 
@@ -379,7 +424,7 @@ Pastikan terdapat mapping:
 /var/www/html ro
 ```
 
-dan:
+Persistent storage:
 
 ```text
 /var/apps/perpustakaan/data/storage-app
@@ -387,19 +432,49 @@ dan:
 /var/www/html/storage/app rw
 ```
 
+Framework:
+
+```text
+/var/apps/perpustakaan/data/storage-framework
+->
+/var/www/html/storage/framework rw
+```
+
+Log:
+
+```text
+/var/apps/perpustakaan/data/storage-logs
+->
+/var/www/html/storage/logs rw
+```
+
+Bootstrap cache:
+
+```text
+/var/apps/perpustakaan/data/bootstrap-cache
+->
+/var/www/html/bootstrap/cache rw
+```
+
 Dengan demikian:
 
 ```text
-Source Laravel  = READ ONLY
-Runtime Laravel = READ WRITE
+Laravel Source  = READ ONLY pada runtime
+Laravel Runtime = READ WRITE
 ```
 
 
-## 9. Install Dependency Composer
+## 10. Install Dependency Composer
 
-Karena source pada container production dibuat read-only, Composer dapat dijalankan menggunakan temporary container yang memperoleh akses write ke source.
+Source Laravel pada container PHP-FPM bersifat read-only.
 
-Jalankan:
+Karena Composer perlu membuat atau memperbarui:
+
+```text
+vendor/
+```
+
+gunakan temporary container dengan source mount yang writable:
 
 ```bash
 docker run --rm \
@@ -418,22 +493,32 @@ Periksa:
 ls -lah /var/apps/perpustakaan/app/vendor
 ```
 
-Direktori berikut harus tersedia:
+Direktori:
 
 ```text
 vendor/
 ```
 
+harus tersedia.
 
-## 10. Membuat File .env
+Temporary container Composer hanya digunakan pada proses deployment.
 
-Masuk ke source:
+Container PHP-FPM utama tetap menggunakan:
+
+```text
+/var/www/html:ro
+```
+
+
+## 11. Membuat File `.env`
+
+Masuk:
 
 ```bash
 cd /var/apps/perpustakaan/app
 ```
 
-Copy template:
+Copy:
 
 ```bash
 cp .env.example .env
@@ -445,13 +530,13 @@ Edit:
 nano .env
 ```
 
-Contoh:
 > **Peringatan Keamanan**
 >
-> Jangan pernah memasukkan file `.env` production ke repository Git atau mempublikasikannya dalam dokumentasi.
-> File `.env` dapat berisi informasi sensitif seperti `APP_KEY`, password database, API key, token, dan credential layanan lainnya.
-> Seluruh credential dalam tutorial ini hanyalah placeholder dan harus diganti pada server production.
+> Jangan pernah memasukkan file `.env` production ke repository Git atau mempublikasikan credential asli dalam dokumentasi.
 >
+> File `.env` dapat berisi `APP_KEY`, password database, API key, token, dan credential layanan lainnya.
+
+Contoh:
 
 ```env
 APP_NAME="Aplikasi Perpustakaan"
@@ -472,32 +557,72 @@ DB_PORT=3306
 DB_DATABASE=db_perpustakaan
 DB_USERNAME=perpustakaan
 DB_PASSWORD=GANTI_PASSWORD_DATABASE
+DB_SOCKET=/run/mysqld/mysqld.sock
 
 SESSION_DRIVER=database
 CACHE_STORE=database
 QUEUE_CONNECTION=database
 ```
 
-Pada contoh arsitektur ini, MySQL berada pada host dan:
+Pada arsitektur ini koneksi database menggunakan Unix Socket:
 
 ```text
-/run/mysqld
+/run/mysqld/mysqld.sock
 ```
 
-di-mount ke container:
+Variabel:
 
-```yaml
-- /run/mysqld:/run/mysqld:ro
+```env
+DB_SOCKET=/run/mysqld/mysqld.sock
 ```
 
-Karena itu aplikasi dapat menggunakan Unix Socket MySQL.
-
-> Jika MySQL juga dijalankan menggunakan Docker, konfigurasi database dapat berbeda. `DB_HOST` biasanya menggunakan nama service/container MySQL, bukan `localhost`.
+digunakan untuk menentukan lokasi Unix Socket MySQL.
 
 
-## 11. Generate APP_KEY
+## 12. Memeriksa Konfigurasi Unix Socket Laravel
 
-Untuk aplikasi Laravel baru, generate APP_KEY sebelum permission `.env` dikunci.
+Periksa:
+
+```bash
+grep -n "unix_socket" \
+  /var/apps/perpustakaan/app/config/database.php
+```
+
+Pada konfigurasi koneksi MySQL Laravel pastikan terdapat:
+
+```php
+'unix_socket' => env('DB_SOCKET', ''),
+```
+
+Contoh bagian konfigurasi MySQL:
+
+```php
+'mysql' => [
+    'driver' => 'mysql',
+    'url' => env('DB_URL'),
+    'host' => env('DB_HOST', '127.0.0.1'),
+    'port' => env('DB_PORT', '3306'),
+    'database' => env('DB_DATABASE', 'laravel'),
+    'username' => env('DB_USERNAME', 'root'),
+    'password' => env('DB_PASSWORD', ''),
+    'unix_socket' => env('DB_SOCKET', ''),
+    'charset' => env('DB_CHARSET', 'utf8mb4'),
+    'collation' => env('DB_COLLATION', 'utf8mb4_unicode_ci'),
+],
+```
+
+Dengan demikian Laravel/PDO menggunakan:
+
+```text
+/run/mysqld/mysqld.sock
+```
+
+untuk mengakses MySQL pada host.
+
+
+## 13. Generate APP_KEY
+
+Untuk aplikasi Laravel baru, generate `APP_KEY` sebelum permission `.env` dikunci.
 
 Jalankan:
 
@@ -515,16 +640,16 @@ Periksa:
 grep '^APP_KEY=' /var/apps/perpustakaan/app/.env
 ```
 
-Contoh:
+Target:
 
 ```text
 APP_KEY=base64:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
 ```
 
-> **Penting:** Jangan mengganti `APP_KEY` sembarangan pada aplikasi production yang sudah berjalan. APP_KEY digunakan Laravel untuk fungsi kriptografi dan data terenkripsi.
+> **Penting:** Jangan mengganti `APP_KEY` sembarangan pada aplikasi production yang sudah berjalan. `APP_KEY` digunakan Laravel untuk fungsi kriptografi dan data terenkripsi.
 
 
-## 12. Mengamankan Permission .env
+## 14. Mengamankan Permission `.env`
 
 PHP-FPM berjalan sebagai:
 
@@ -532,7 +657,7 @@ PHP-FPM berjalan sebagai:
 www-data
 ```
 
-File `.env` perlu dapat dibaca oleh PHP-FPM, tetapi tidak perlu writable oleh web server.
+File `.env` harus dapat dibaca PHP-FPM, tetapi tidak perlu writable oleh web server.
 
 Atur:
 
@@ -547,87 +672,53 @@ Periksa:
 ls -lah /var/apps/perpustakaan/app/.env
 ```
 
-Tes dari container:
+Test sebagai `www-data`:
 
 ```bash
 docker exec -u www-data perpustakaan-php \
-  grep '^APP_KEY=' /var/www/html/.env
+  grep '^APP_ENV=' /var/www/html/.env
 ```
 
-Jika APP_KEY tampil, berarti `www-data` dapat membaca `.env`.
+Target:
 
+```text
+APP_ENV=production
+```
 
-## 13. Membuat Database MySQL
-
-Login:
+Pastikan `.env` tidak writable:
 
 ```bash
-mysql -u root
+docker exec -u www-data perpustakaan-php \
+  test ! -w /var/www/html/.env && echo "ENV READ ONLY"
 ```
 
-Buat database:
+Target:
 
-```sql
-CREATE DATABASE db_perpustakaan
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
-```
-
-Buat user:
-
-```sql
-CREATE USER 'perpustakaan'@'localhost'
-IDENTIFIED BY 'GANTI_DENGAN_PASSWORD_KUAT';
-```
-
-Berikan privilege:
-
-```sql
-GRANT ALL PRIVILEGES
-ON db_perpustakaan.*
-TO 'perpustakaan'@'localhost';
-
-FLUSH PRIVILEGES;
-```
-
-Periksa:
-
-```sql
-SHOW GRANTS FOR 'perpustakaan'@'localhost';
-```
-
-Keluar:
-
-```sql
-EXIT;
+```text
+ENV READ ONLY
 ```
 
 
-## 14. Test Koneksi MySQL
+## 15. Memeriksa Koneksi Database
 
-Test dari host:
+Periksa konfigurasi Laravel:
 
 ```bash
-mysql -u perpustakaan -p db_perpustakaan
+docker exec perpustakaan-php \
+  php /var/www/html/artisan about
 ```
 
-Kemudian test melalui Laravel:
+Kemudian:
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan migrate:status
 ```
 
-Jika database benar-benar baru, Laravel dapat menampilkan:
-
-```text
-Migration table not found.
-```
-
-Ini normal jika migration belum pernah dijalankan.
+Jika database masih baru dan tabel migration belum tersedia, pesan mengenai tabel migration yang belum ada dapat terjadi sebelum migration pertama dijalankan.
 
 
-## 15. Menjalankan Migration
+## 16. Menjalankan Migration
 
 Jalankan:
 
@@ -650,20 +741,18 @@ Ran
 ```
 
 
-## 16. Menjalankan Seeder
+## 17. Seeder
 
 Periksa terlebih dahulu:
 
 ```bash
-cd /var/apps/perpustakaan/app
-
-ls -lah database/seeders/
+ls -lah /var/apps/perpustakaan/app/database/seeders/
 ```
 
-Baca isi seeder:
+Baca:
 
 ```bash
-cat database/seeders/DatabaseSeeder.php
+cat /var/apps/perpustakaan/app/database/seeders/DatabaseSeeder.php
 ```
 
 Jika memang diperlukan:
@@ -673,23 +762,17 @@ docker exec perpustakaan-php \
   php /var/www/html/artisan db:seed --force
 ```
 
-> **Peringatan:** Jangan menjalankan seeder pada production tanpa memeriksa isinya terlebih dahulu. Seeder dapat membuat akun default, mengubah data, atau menambahkan data yang sebenarnya hanya ditujukan untuk development/testing.
+> Jangan menjalankan seeder pada production tanpa memeriksa isinya terlebih dahulu.
 
 
-## 17. Restore Database Lama
+## 18. Restore Database Lama
 
-Jika aplikasi memiliki database lama, sebaiknya jangan langsung menimpa database baru hasil migration.
+Jika aplikasi memiliki database lama, jangan langsung menimpa database hasil migration.
 
-Misalnya tersedia:
+Misalnya dump:
 
 ```text
 /root/perpustakaan-backup.sql
-```
-
-Login MySQL:
-
-```bash
-mysql -u root
 ```
 
 Buat database sementara:
@@ -700,12 +783,6 @@ CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 ```
 
-Keluar:
-
-```sql
-EXIT;
-```
-
 Restore:
 
 ```bash
@@ -713,19 +790,19 @@ mysql -u root db_perpustakaan_old \
   < /root/perpustakaan-backup.sql
 ```
 
-Sekarang terdapat:
+Sekarang tersedia:
 
 ```text
 db_perpustakaan       = database aplikasi baru
 db_perpustakaan_old   = database hasil restore
 ```
 
-Dengan metode ini, data lama dapat dibandingkan dan dipindahkan secara terkontrol.
+Data dapat dibandingkan dan dipindahkan secara terkontrol.
 
 
-## 18. Membandingkan Database Lama dan Baru
+## 19. Membandingkan Database Lama dan Baru
 
-Gunakan `COUNT(*)` untuk memperoleh jumlah record aktual.
+Gunakan `COUNT(*)` untuk memperoleh jumlah aktual.
 
 Contoh:
 
@@ -765,10 +842,10 @@ Hindari hanya mengandalkan:
 information_schema.tables.table_rows
 ```
 
-untuk verifikasi jumlah data karena pada beberapa storage engine nilainya dapat berupa estimasi.
+karena pada beberapa storage engine nilainya dapat berupa estimasi.
 
 
-## 19. Persistent Storage Laravel
+## 20. Persistent Storage Laravel
 
 Source:
 
@@ -776,50 +853,51 @@ Source:
 /var/apps/perpustakaan/app
 ```
 
-dipasang ke:
+dipasang:
 
 ```text
 /var/www/html:ro
 ```
 
-Sedangkan direktori runtime menggunakan bind mount terpisah:
+Runtime menggunakan bind mount terpisah:
 
 ```text
 /var/apps/perpustakaan/data/storage-app
-        |
-        +--> /var/www/html/storage/app
+->
+/var/www/html/storage/app
 ```
 
 ```text
 /var/apps/perpustakaan/data/storage-framework
-        |
-        +--> /var/www/html/storage/framework
+->
+/var/www/html/storage/framework
 ```
 
 ```text
 /var/apps/perpustakaan/data/storage-logs
-        |
-        +--> /var/www/html/storage/logs
+->
+/var/www/html/storage/logs
 ```
 
 ```text
 /var/apps/perpustakaan/data/bootstrap-cache
-        |
-        +--> /var/www/html/bootstrap/cache
+->
+/var/www/html/bootstrap/cache
 ```
 
-Dengan demikian container tetap menggunakan:
+Dengan demikian container tetap:
 
-```yaml
-read_only: true
+```text
+read_only
 ```
 
-tetapi Laravel masih dapat menulis pada direktori runtime yang memang diperlukan.
+tetapi Laravel dapat menulis pada direktori runtime yang memang diperlukan.
 
 
-## 20. Struktur Upload Aplikasi
+## 21. Struktur Upload Aplikasi
 
-Sebagai contoh, aplikasi perpustakaan memiliki file public dan private.
+Contoh aplikasi perpustakaan menggunakan public dan private storage.
+
 
 ### File Public
 
@@ -832,20 +910,32 @@ storage/app/public/
 └── avatars/
 ```
 
-Contoh penggunaannya:
+Contoh:
 
-| Jenis File | Lokasi |
-|---|---|
-| Foto anggota | `storage/app/public/anggota/foto/` |
-| Template kartu anggota | `storage/app/public/template_kartu/` |
-| Logo instansi | `storage/app/public/institutions/` |
-| Avatar admin/user | `storage/app/public/avatars/` |
+```text
+Foto anggota
+storage/app/public/anggota/foto/
+```
 
-File tersebut memang dirancang agar dapat ditampilkan melalui web.
+```text
+Template kartu anggota
+storage/app/public/template_kartu/
+```
+
+```text
+Logo instansi
+storage/app/public/institutions/
+```
+
+```text
+Avatar admin/user
+storage/app/public/avatars/
+```
+
 
 ### File Private
 
-Dokumen sensitif tidak disimpan di public storage:
+Dokumen sensitif tidak disimpan pada public storage:
 
 ```text
 storage/app/
@@ -857,16 +947,25 @@ storage/app/
 
 Contoh:
 
-| Jenis Dokumen | Lokasi |
-|---|---|
-| Scan KTP/Kartu Identitas | `storage/app/anggota/identitas/` |
-| Kartu Keluarga | `storage/app/anggota/kk/` |
-| Akta Kelahiran | `storage/app/anggota/akta/` |
+```text
+Scan KTP
+storage/app/anggota/identitas/
+```
 
-KTP, KK, Akta, dan dokumen sensitif lainnya sebaiknya tidak dapat diakses langsung menggunakan URL publik.
+```text
+Kartu Keluarga
+storage/app/anggota/kk/
+```
+
+```text
+Akta Kelahiran
+storage/app/anggota/akta/
+```
+
+KTP, KK, Akta, dan dokumen sensitif lainnya tidak boleh dapat diakses langsung menggunakan URL publik.
 
 
-## 21. Sinkronisasi Initial Asset
+## 22. Sinkronisasi Initial Asset
 
 Developer terkadang menyimpan initial asset pada repository:
 
@@ -874,20 +973,20 @@ Developer terkadang menyimpan initial asset pada repository:
 storage/app/public/
 ```
 
-Misalnya:
+misalnya:
 
 ```text
 storage/app/public/institutions/
 storage/app/public/template_kartu/
 ```
 
-Sedangkan production menggunakan persistent storage:
+Production menggunakan:
 
 ```text
 /var/apps/perpustakaan/data/storage-app/public/
 ```
 
-Pada initial deployment, copy:
+Pada initial deployment:
 
 ```bash
 cp -a \
@@ -902,7 +1001,7 @@ chown -R www-data:www-data \
   /var/apps/perpustakaan/data/storage-app/public
 ```
 
-Atur permission:
+Permission:
 
 ```bash
 chmod -R u=rwX,g=rwX,o= \
@@ -923,16 +1022,16 @@ dan:
 
 merupakan dua direktori berbeda.
 
-Direktori pertama merupakan bagian dari source Git.
+Direktori pertama merupakan bagian source Git.
 
 Direktori kedua merupakan persistent production storage.
 
-Upload yang dilakukan aplikasi di dalam container akan masuk ke persistent storage melalui Docker bind mount.
+Jangan menggunakan proses sinkronisasi yang menghapus file pada destination karena persistent storage dapat berisi upload pengguna yang tidak terdapat pada repository Git.
 
 
-## 22. Test Writable Laravel
+## 23. Test Writable Laravel
 
-Jalankan sebagai `www-data`:
+Jalankan:
 
 ```bash
 docker exec -u www-data perpustakaan-php sh -c '
@@ -951,7 +1050,7 @@ Target:
 SEMUA WRITABLE
 ```
 
-Hapus file pengujian:
+Hapus file test:
 
 ```bash
 docker exec -u www-data perpustakaan-php sh -c '
@@ -964,7 +1063,7 @@ rm -f /var/www/html/bootstrap/cache/test-write
 ```
 
 
-## 23. Memeriksa Laravel
+## 24. Memeriksa Laravel
 
 Jalankan:
 
@@ -984,25 +1083,17 @@ Debug Mode          OFF
 Database            mysql
 ```
 
-Yang paling penting untuk production:
 
-```text
-Environment    production
-Debug Mode     OFF
-```
-
-
-## 24. Build Frontend dengan Vite
+## 25. Build Frontend dengan Vite
 
 Periksa:
 
 ```bash
 cd /var/apps/perpustakaan/app
-
 cat package.json
 ```
 
-Jika aplikasi menggunakan Vite, production membutuhkan hasil build:
+Jika aplikasi menggunakan Vite, production membutuhkan:
 
 ```text
 public/build/
@@ -1015,7 +1106,7 @@ npm ci
 npm run build
 ```
 
-Hasilnya biasanya:
+Hasil:
 
 ```text
 public/build/
@@ -1023,9 +1114,9 @@ public/build/
 └── manifest.json
 ```
 
-Jika strategi deployment memang menyimpan hasil build ke repository, developer dapat melakukan commit dan push terhadap `public/build`.
+Jika strategi deployment menggunakan hasil build yang disimpan pada repository, developer harus memastikan `public/build/` ikut tersedia pada branch production.
 
-Server production kemudian cukup melakukan:
+Server production kemudian cukup memperoleh hasil build melalui:
 
 ```bash
 git pull --ff-only origin main
@@ -1038,10 +1129,24 @@ ls -lah public/build/
 ls -lah public/build/assets/
 ```
 
+Pastikan manifest tersedia:
+
+```bash
+test -f public/build/manifest.json \
+  && echo "VITE BUILD OK" \
+  || echo "VITE BUILD TIDAK DITEMUKAN"
+```
+
+Target:
+
+```text
+VITE BUILD OK
+```
+
 Dengan metode ini Node.js tidak harus dipasang pada application server production.
 
 
-## 25. Konfigurasi Nginx
+## 26. Konfigurasi Nginx Application Server
 
 Buat:
 
@@ -1083,10 +1188,8 @@ server {
             return 403;
         }
 
-        # Mencegah MIME sniffing
         add_header X-Content-Type-Options "nosniff" always;
 
-        # Jangan tampilkan isi directory
         autoindex off;
     }
 
@@ -1104,7 +1207,9 @@ server {
         fastcgi_pass unix:/run/php/perpustakaan.sock;
     }
 
+    # =========================================================
     # Block hidden files except .well-known
+    # =========================================================
     location ~ /\.(?!well-known).* {
         deny all;
     }
@@ -1112,7 +1217,7 @@ server {
 ```
 
 
-## 26. Mengaktifkan Nginx Site
+## 27. Mengaktifkan Nginx Site
 
 Buat symbolic link:
 
@@ -1142,7 +1247,7 @@ systemctl reload nginx
 ```
 
 
-## 27. Test Backend Nginx
+## 28. Test Backend Nginx
 
 Jalankan:
 
@@ -1154,23 +1259,23 @@ curl -i \
 
 Pastikan response berasal dari aplikasi Laravel.
 
-Jika Laravel dikonfigurasi untuk menggunakan URL HTTPS, aplikasi dapat memberikan redirect menuju:
+Jika Laravel dikonfigurasi menggunakan URL HTTPS, aplikasi dapat melakukan redirect ke:
 
 ```text
 https://perpustakaan.example.go.id
 ```
 
 
-## 28. Reverse Proxy HTTPS
+## 29. Reverse Proxy HTTPS
 
-Contoh arsitektur:
+Arsitektur:
 
 ```text
 Internet
     |
     | HTTPS :443
     v
-Reverse Proxy
+Reverse Proxy Nginx
     |
     | HTTP :8080
     v
@@ -1216,12 +1321,18 @@ server {
 }
 ```
 
-Dengan arsitektur ini, SSL/TLS ditangani oleh reverse proxy, sedangkan application server menerima request melalui HTTP pada port `8080`.
+Ganti:
+
+```text
+IP_APPLICATION_SERVER
+```
+
+dengan alamat IP application server sebenarnya.
 
 
-## 29. Hardening Direktori Upload
+## 30. Hardening Direktori Upload
 
-Salah satu risiko penting pada aplikasi web adalah upload file berbahaya.
+Salah satu risiko aplikasi web adalah file upload berbahaya.
 
 Misalnya attacker berhasil meng-upload:
 
@@ -1235,7 +1346,7 @@ ke:
 storage/app/public/anggota/foto/shell.php
 ```
 
-Jika web server salah dikonfigurasi, file tersebut berpotensi diteruskan ke PHP-FPM dan dieksekusi.
+Jika web server salah dikonfigurasi, file tersebut berpotensi dieksekusi.
 
 Karena itu digunakan:
 
@@ -1266,10 +1377,12 @@ Selain itu extension script berikut ditolak:
 .sh
 ```
 
-Konfigurasi ini merupakan lapisan tambahan. Aplikasi Laravel tetap harus melakukan validasi file upload pada level aplikasi.
+Konfigurasi Nginx merupakan salah satu lapisan pertahanan.
+
+Aplikasi Laravel tetap harus melakukan validasi file upload pada level aplikasi.
 
 
-## 30. Test Anti Eksekusi PHP
+## 31. Test Anti Eksekusi PHP
 
 Buat file pengujian:
 
@@ -1306,7 +1419,7 @@ Tidak boleh muncul:
 PHP_EXECUTED_DANGER
 ```
 
-Jika response adalah:
+Jika response:
 
 ```text
 403 Forbidden
@@ -1314,7 +1427,7 @@ Jika response adalah:
 
 dan kode PHP tidak dijalankan, hardening bekerja.
 
-Hapus file test:
+Hapus:
 
 ```bash
 rm -f \
@@ -1322,7 +1435,7 @@ rm -f \
 ```
 
 
-## 31. Public Storage Tanpa `php artisan storage:link`
+## 32. Public Storage Tanpa `php artisan storage:link`
 
 Laravel biasanya menggunakan:
 
@@ -1338,7 +1451,7 @@ public/storage
 storage/app/public
 ```
 
-Pada arsitektur dalam tutorial ini symbolic link tersebut tidak diperlukan karena Nginx langsung melayani persistent public storage:
+Pada arsitektur ini symbolic link tersebut tidak diperlukan karena Nginx langsung melayani persistent public storage:
 
 ```nginx
 location ^~ /storage/ {
@@ -1348,14 +1461,14 @@ location ^~ /storage/ {
 
 Keuntungannya:
 
-1. Source Laravel tetap read-only.
+1. Source Laravel tetap read-only pada runtime.
 2. Upload terpisah dari repository Git.
 3. Persistent storage tidak hilang ketika container diganti.
 4. Nginx dapat mengontrol langsung akses `/storage/`.
 5. PHP dapat diblokir pada seluruh public upload directory.
 
 
-## 32. Test File Public Storage
+## 33. Test File Public Storage
 
 Misalnya tersedia:
 
@@ -1385,9 +1498,9 @@ Content-Type: image/png
 ```
 
 
-## 33. Update Aplikasi dari GitHub
+## 34. Update Aplikasi dari GitHub
 
-Masuk ke source:
+Masuk:
 
 ```bash
 cd /var/apps/perpustakaan/app
@@ -1432,9 +1545,9 @@ Penggunaan:
 membantu mencegah server production membuat merge commit secara tidak sengaja.
 
 
-## 34. Update Dependency Composer
+## 35. Update Dependency Composer
 
-Jika setelah `git pull` terdapat perubahan pada:
+Jika setelah `git pull` terdapat perubahan:
 
 ```text
 composer.json
@@ -1454,8 +1567,12 @@ docker run --rm \
     --no-interaction
 ```
 
+Temporary container tersebut memperoleh akses write ke source untuk memperbarui `vendor/`.
 
-## 35. Backup Database Sebelum Migration Production
+Container PHP-FPM production tetap menggunakan source read-only.
+
+
+## 36. Backup Database Sebelum Migration Production
 
 Sebelum menjalankan migration pada database production, lakukan backup.
 
@@ -1476,7 +1593,7 @@ Periksa:
 ls -lh /root/db_perpustakaan_before_deploy.sql
 ```
 
-Untuk deployment yang rutin, nama backup sebaiknya menggunakan timestamp:
+Untuk deployment rutin gunakan timestamp:
 
 ```bash
 mysqldump -u root \
@@ -1488,16 +1605,16 @@ mysqldump -u root \
 ```
 
 
-## 36. Menjalankan Migration Setelah Update
+## 37. Menjalankan Migration Setelah Update
 
-Periksa terlebih dahulu:
+Periksa:
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan migrate:status
 ```
 
-Setelah backup tersedia, jalankan:
+Setelah backup tersedia:
 
 ```bash
 docker exec perpustakaan-php \
@@ -1512,9 +1629,9 @@ docker exec perpustakaan-php \
 ```
 
 
-## 37. Sinkronisasi Initial Asset Setelah Git Pull
+## 38. Sinkronisasi Initial Asset Setelah Git Pull
 
-Jika developer menambahkan **initial asset baru** ke:
+Jika developer menambahkan initial asset baru ke:
 
 ```text
 storage/app/public/
@@ -1527,7 +1644,7 @@ storage/app/public/institutions/
 storage/app/public/template_kartu/
 ```
 
-sinkronkan ke persistent storage:
+sinkronkan:
 
 ```bash
 cp -a \
@@ -1549,12 +1666,12 @@ chmod -R u=rwX,g=rwX,o= \
   /var/apps/perpustakaan/data/storage-app/public
 ```
 
-> **Penting:** Sinkronisasi ini tidak wajib dilakukan pada setiap deployment. Jalankan hanya jika developer memang menambahkan initial asset baru yang harus masuk ke persistent storage.
+> **Penting:** Sinkronisasi tidak wajib dilakukan pada setiap deployment. Jalankan hanya jika developer menambahkan initial asset baru.
 
 Jangan menggunakan mekanisme sinkronisasi yang menghapus file destination karena persistent storage dapat berisi upload pengguna yang tidak terdapat pada repository Git.
 
 
-## 38. Laravel Cache
+## 39. Laravel Cache
 
 Setelah deployment:
 
@@ -1591,10 +1708,10 @@ docker exec perpustakaan-php \
   php /var/www/html/artisan about
 ```
 
-> `route:cache` digunakan jika seluruh route aplikasi kompatibel dengan route caching.
+> `route:cache` digunakan hanya jika seluruh route aplikasi kompatibel dengan route caching.
 
 
-## 39. Restart atau Recreate Container
+## 40. Restart atau Recreate Container
 
 Jika konfigurasi Docker, PHP, atau PHP-FPM berubah:
 
@@ -1621,7 +1738,7 @@ healthy
 ```
 
 
-## 40. Checklist Setelah Deployment
+## 41. Checklist Setelah Deployment
 
 ### Git
 
@@ -1636,6 +1753,7 @@ Target:
 nothing to commit, working tree clean
 ```
 
+
 ### Docker
 
 ```bash
@@ -1648,6 +1766,7 @@ Target:
 healthy
 ```
 
+
 ### PHP
 
 ```bash
@@ -1659,6 +1778,7 @@ Target:
 ```text
 PHP 8.3.x
 ```
+
 
 ### Laravel
 
@@ -1675,6 +1795,26 @@ Debug Mode      OFF
 Database        mysql
 ```
 
+
+### MySQL Unix Socket pada Host
+
+```bash
+ls -lah /run/mysqld/mysqld.sock
+```
+
+Socket harus tersedia.
+
+
+### MySQL Unix Socket dalam Container
+
+```bash
+docker exec perpustakaan-php \
+  ls -lah /run/mysqld/mysqld.sock
+```
+
+Socket harus tersedia.
+
+
 ### Database
 
 ```bash
@@ -1687,6 +1827,7 @@ Pastikan migration yang diperlukan:
 ```text
 Ran
 ```
+
 
 ### Nginx
 
@@ -1701,11 +1842,40 @@ syntax is ok
 test is successful
 ```
 
+
 ### PHP-FPM Socket
 
 ```bash
 ls -lah /run/php/perpustakaan.sock
 ```
+
+
+### `.env`
+
+```bash
+docker exec -u www-data perpustakaan-php \
+  grep '^APP_ENV=' /var/www/html/.env
+```
+
+Target:
+
+```text
+APP_ENV=production
+```
+
+Pastikan tidak writable:
+
+```bash
+docker exec -u www-data perpustakaan-php \
+  test ! -w /var/www/html/.env && echo "ENV READ ONLY"
+```
+
+Target:
+
+```text
+ENV READ ONLY
+```
+
 
 ### Writable Storage
 
@@ -1720,9 +1890,23 @@ Target:
 WRITABLE
 ```
 
-### Public Storage
 
-Test file gambar:
+### Vite
+
+```bash
+test -f /var/apps/perpustakaan/app/public/build/manifest.json \
+  && echo "VITE BUILD OK" \
+  || echo "VITE BUILD TIDAK DITEMUKAN"
+```
+
+Target:
+
+```text
+VITE BUILD OK
+```
+
+
+### Public Storage
 
 ```bash
 curl -I \
@@ -1735,6 +1919,7 @@ Target:
 ```text
 200 OK
 ```
+
 
 ### Anti Eksekusi PHP
 
@@ -1751,9 +1936,7 @@ harus menghasilkan:
 ```
 
 
-## 41. Arsitektur Akhir
-
-Arsitektur akhir deployment:
+## 42. Arsitektur Akhir
 
 ```text
                          INTERNET
@@ -1824,6 +2007,12 @@ MySQL:
 MySQL pada host
 ```
 
+MySQL Socket:
+
+```text
+/run/mysqld/mysqld.sock
+```
+
 Public upload:
 
 ```text
@@ -1831,17 +2020,17 @@ Public upload:
 ```
 
 
-## 42. Prinsip Keamanan Deployment
+## 43. Prinsip Keamanan Deployment
 
 Deployment ini menerapkan beberapa prinsip defense-in-depth:
 
-1. Source Laravel dipasang read-only.
-2. Hanya direktori runtime yang writable.
+1. Source Laravel dipasang read-only pada container PHP-FPM runtime.
+2. Hanya direktori runtime yang writable oleh aplikasi.
 3. Container menggunakan `read_only: true`.
 4. Container menggunakan `no-new-privileges`.
 5. `/tmp` menggunakan `tmpfs`.
 6. PHP-FPM menggunakan Unix Socket.
-7. MySQL dapat menggunakan Unix Socket.
+7. MySQL menggunakan Unix Socket pada arsitektur contoh ini.
 8. Document root Nginx hanya menunjuk ke direktori `public/`.
 9. Upload production dipisahkan dari source Git.
 10. PHP tidak dapat dieksekusi dari `/storage/`.
@@ -1857,23 +2046,30 @@ Deployment ini menerapkan beberapa prinsip defense-in-depth:
 20. Persistent storage harus dibackup terpisah dari source Git.
 21. Initial asset dari Git tidak boleh dianggap sebagai pengganti persistent upload production.
 22. File upload tetap harus divalidasi pada level aplikasi Laravel.
+23. Vite production build harus tersedia sebelum aplikasi dilayani.
+24. Composer memperoleh akses write hanya melalui temporary deployment container.
 
 
-## 43. Prosedur Deployment Rutin
+## 44. Prosedur Deployment Rutin
 
 Setelah developer melakukan push ke repository, deployment production dapat dilakukan dengan urutan berikut.
 
-### 43.1 Periksa Repository
+
+### 44.1 Periksa Repository
 
 ```bash
 cd /var/apps/perpustakaan/app
-
 git status
 ```
 
-Pastikan working tree bersih.
+Pastikan:
 
-### 43.2 Update Source
+```text
+nothing to commit, working tree clean
+```
+
+
+### 44.2 Update Source
 
 ```bash
 git fetch origin
@@ -1881,9 +2077,28 @@ git status
 git pull --ff-only origin main
 ```
 
-### 43.3 Update Composer Jika Diperlukan
 
-Jika `composer.json` atau `composer.lock` berubah:
+### 44.3 Periksa Vite Build
+
+```bash
+test -f public/build/manifest.json \
+  && echo "VITE BUILD OK" \
+  || echo "VITE BUILD TIDAK DITEMUKAN"
+```
+
+Jika aplikasi menggunakan Vite, jangan lanjutkan deployment sebelum `manifest.json` tersedia.
+
+
+### 44.4 Update Composer Jika Diperlukan
+
+Jika:
+
+```text
+composer.json
+composer.lock
+```
+
+berubah:
 
 ```bash
 docker run --rm \
@@ -1896,7 +2111,8 @@ docker run --rm \
     --no-interaction
 ```
 
-### 43.4 Sinkronkan Initial Asset Jika Diperlukan
+
+### 44.5 Sinkronkan Initial Asset Jika Diperlukan
 
 Hanya jika developer menambahkan initial asset baru:
 
@@ -1913,7 +2129,15 @@ chown -R www-data:www-data \
   /var/apps/perpustakaan/data/storage-app/public
 ```
 
-### 43.5 Backup Database
+Permission:
+
+```bash
+chmod -R u=rwX,g=rwX,o= \
+  /var/apps/perpustakaan/data/storage-app/public
+```
+
+
+### 44.6 Backup Database
 
 ```bash
 mysqldump -u root \
@@ -1924,49 +2148,114 @@ mysqldump -u root \
   > "/root/db_perpustakaan_$(date +%Y%m%d_%H%M%S).sql"
 ```
 
-### 43.6 Jalankan Migration
+
+### 44.7 Periksa MySQL Socket
+
+```bash
+ls -lah /run/mysqld/mysqld.sock
+```
+
+Periksa dari container:
+
+```bash
+docker exec perpustakaan-php \
+  ls -lah /run/mysqld/mysqld.sock
+```
+
+
+### 44.8 Jalankan Migration
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan migrate --force
 ```
 
-### 43.7 Clear Cache
+
+### 44.9 Clear Cache
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan optimize:clear
 ```
 
-### 43.8 Periksa Nginx
+
+### 44.10 Build Cache Production Jika Digunakan
+
+```bash
+docker exec perpustakaan-php \
+  php /var/www/html/artisan config:cache
+```
+
+Jika kompatibel:
+
+```bash
+docker exec perpustakaan-php \
+  php /var/www/html/artisan route:cache
+```
+
+```bash
+docker exec perpustakaan-php \
+  php /var/www/html/artisan view:cache
+```
+
+
+### 44.11 Periksa Nginx
 
 ```bash
 nginx -t
 ```
 
-### 43.9 Periksa Container
+
+### 44.12 Periksa Container
 
 ```bash
 docker ps --filter name=perpustakaan-php
 ```
 
-### 43.10 Periksa Laravel
+
+### 44.13 Periksa Laravel
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan about
 ```
 
-### 43.11 Periksa Migration
+
+### 44.14 Periksa Migration
 
 ```bash
 docker exec perpustakaan-php \
   php /var/www/html/artisan migrate:status
 ```
 
-### 43.12 Test Aplikasi
 
-Test backend:
+### 44.15 Periksa Writable Storage
+
+```bash
+docker exec -u www-data perpustakaan-php \
+  test -w /var/www/html/storage/framework \
+  && echo "STORAGE WRITABLE"
+```
+
+
+### 44.16 Periksa `.env`
+
+```bash
+docker exec -u www-data perpustakaan-php \
+  test -r /var/www/html/.env \
+  && echo "ENV READABLE"
+```
+
+Pastikan tidak writable:
+
+```bash
+docker exec -u www-data perpustakaan-php \
+  test ! -w /var/www/html/.env \
+  && echo "ENV READ ONLY"
+```
+
+
+### 44.17 Test Backend
 
 ```bash
 curl -I \
@@ -1974,18 +2263,77 @@ curl -I \
   http://127.0.0.1:8080/
 ```
 
-Kemudian test aplikasi melalui domain production:
+
+### 44.18 Test Public Storage
+
+```bash
+curl -I \
+  -H "Host: perpustakaan.example.go.id" \
+  http://127.0.0.1:8080/storage/institutions/logo.png
+```
+
+
+### 44.19 Test Domain Production
+
+Akses:
 
 ```text
 https://perpustakaan.example.go.id
 ```
 
+Pastikan halaman aplikasi, CSS, JavaScript, gambar, login, database, dan file upload berjalan normal.
 
-## 44. Penutup
 
-Deployment Laravel pada server production tidak hanya membutuhkan PHP, database, dan web server. Struktur penyimpanan, permission, isolasi container, mekanisme deployment, serta keamanan direktori upload juga perlu dirancang sejak awal.
+## 45. Backup Persistent Storage
 
-Pada arsitektur ini, komponen aplikasi dipisahkan berdasarkan fungsinya:
+Database bukan satu-satunya data yang perlu dibackup.
+
+Persistent storage:
+
+```text
+/var/apps/perpustakaan/data/
+```
+
+juga harus dibackup.
+
+Direktori penting antara lain:
+
+```text
+storage-app/
+storage-framework/
+storage-logs/
+bootstrap-cache/
+```
+
+Data yang paling penting adalah:
+
+```text
+storage-app/
+```
+
+karena dapat berisi:
+
+```text
+upload pengguna
+foto anggota
+logo instansi
+dokumen private
+dokumen administrasi
+file aplikasi lainnya
+```
+
+Source Git bukan pengganti backup persistent storage.
+
+Repository Git dan persistent production storage memiliki fungsi yang berbeda.
+
+
+## 46. Penutup
+
+Deployment Laravel pada server production tidak hanya membutuhkan PHP, database, dan web server.
+
+Struktur penyimpanan, permission, isolasi container, mekanisme deployment, database, frontend asset, serta keamanan direktori upload perlu dirancang sejak awal.
+
+Pada arsitektur ini komponen aplikasi dipisahkan berdasarkan fungsinya:
 
 ```text
 Git Repository
@@ -1993,17 +2341,44 @@ Git Repository
       v
 Laravel Source
   READ ONLY
+  saat runtime
       |
-      +---------------------+
-      |                     |
-      v                     v
-PHP-FPM Docker       Persistent Storage
-                         READ WRITE
-                              |
-                 +------------+------------+
-                 |            |            |
-                 v            v            v
-               Upload       Session       Log
+      +-----------------------+
+      |                       |
+      v                       v
+PHP-FPM Docker         Persistent Storage
+                           READ WRITE
+                                |
+                   +------------+------------+
+                   |            |            |
+                   v            v            v
+                 Upload       Session       Log
+```
+
+Koneksi PHP:
+
+```text
+Nginx
+   |
+   | Unix Socket
+   v
+/run/php/perpustakaan.sock
+   |
+   v
+PHP-FPM Docker
+```
+
+Koneksi database:
+
+```text
+Laravel
+   |
+   | DB_SOCKET
+   v
+/run/mysqld/mysqld.sock
+   |
+   v
+MySQL pada Host
 ```
 
 Source code tetap dikelola melalui Git, sedangkan data yang dihasilkan aplikasi disimpan pada persistent storage terpisah.
@@ -2011,12 +2386,18 @@ Source code tetap dikelola melalui Git, sedangkan data yang dihasilkan aplikasi 
 Pendekatan ini memberikan beberapa keuntungan:
 
 - update source tidak menghapus file upload;
-- container dapat dibuat lebih ketat dengan filesystem read-only;
+- container PHP-FPM dapat menggunakan filesystem read-only;
+- hanya direktori runtime tertentu yang writable;
 - data runtime dapat dibackup secara terpisah;
 - file sensitif dapat dipisahkan dari public storage;
 - direktori upload dapat di-hardening pada level Nginx;
-- PHP-FPM dan MySQL dapat diakses melalui Unix Socket;
-- proses deployment menjadi lebih terstruktur dan dapat diuji.
+- PHP-FPM diakses melalui Unix Socket;
+- MySQL pada host dapat diakses melalui Unix Socket;
+- `.env` dapat dibuat readable tetapi tidak writable oleh PHP-FPM;
+- Vite build dapat diverifikasi sebelum deployment;
+- Composer dijalankan melalui temporary container;
+- deployment Git menggunakan `--ff-only`;
+- proses migration diawali dengan backup database;
+- proses deployment dapat diuji menggunakan checklist yang konsisten.
 
-Dengan pola tersebut, deployment Laravel menjadi lebih mudah dikelola sekaligus memberikan fondasi keamanan yang lebih baik untuk lingkungan production.
-````
+Dengan pola tersebut, deployment Laravel menjadi lebih terstruktur, mudah dikelola, dan memiliki fondasi keamanan yang lebih baik untuk lingkungan production.
