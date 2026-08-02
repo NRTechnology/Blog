@@ -1645,7 +1645,7 @@ Setelah seluruh konfigurasi dijelaskan pada bagian-bagian sebelumnya, berikut ad
 ```nginx
 server {
 
-    listen 8080;
+    listen 8080 ssl http2;
 
     server_name jurnal.example.go.id;
 
@@ -1656,6 +1656,19 @@ server {
     charset utf-8;
 
     server_tokens off;
+
+    ssl_certificate     /var/ssl_cert/star.example.go.id.crt;
+    ssl_certificate_key /var/ssl_cert/star.example.go.id.key;
+
+    ssl_session_timeout 1d;
+    ssl_session_cache shared:SSL:20m;
+    ssl_session_tickets off;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    ssl_prefer_server_ciphers off;
+
+    ssl_ciphers HIGH:!aNULL:!MD5;
 
     client_max_body_size 256M;
     client_body_timeout 300;
