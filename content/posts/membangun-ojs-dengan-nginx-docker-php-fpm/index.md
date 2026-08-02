@@ -25,6 +25,26 @@ Pada artikel ini saya membangun OJS menggunakan arsitektur yang memisahkan setia
 
 ---
 
+# Seri Artikel
+
+Artikel ini merupakan bagian pertama dari seri **Membangun Open Journal Systems (OJS) 3.4 Menggunakan Nginx Reverse Proxy dan Docker PHP-FPM**.
+
+Urutan artikel pada seri ini adalah sebagai berikut.
+
+1. **Membangun Open Journal Systems (OJS) 3.4 Menggunakan Nginx Reverse Proxy dan Docker PHP-FPM** *(Artikel ini)*
+2. [Instalasi Docker PHP-FPM untuk OJS 3.4](../instalasi-docker-php-fpm-untuk-ojs-34/)
+3. [Konfigurasi PHP-FPM untuk Open Journal Systems (OJS) 3.4](../konfigurasi-php-fpm-untuk-open-journal-systems-ojs-34/)
+4. [Konfigurasi Nginx untuk Open Journal Systems (OJS) 3.4](../konfigurasi-nginx-untuk-open-journal-systems-ojs-34/)
+5. [Instalasi Open Journal Systems (OJS) 3.4](../instalasi-open-journal-systems-ojs-34/)
+6. [Hardening Open Journal Systems (OJS) 3.4](../hardening-open-journal-systems-ojs-34/)
+7. [Backup dan Disaster Recovery Open Journal Systems (OJS) 3.4](../backup-dan-disaster-recovery-open-journal-systems-ojs-34/)
+8. [Migrasi Open Journal Systems (OJS) 3.4 ke Server Baru](../migrasi-open-journal-systems-ojs-34-ke-server-baru/)
+9. [Upgrade Open Journal Systems (OJS) 3.4](../upgrade-open-journal-systems-ojs-34/)
+
+Artikel-artikel tersebut disusun secara berurutan, mulai dari perencanaan arsitektur, instalasi, konfigurasi, hardening, backup, migrasi, hingga proses upgrade pada lingkungan produksi.
+
+---
+
 # Arsitektur
 
 ```
