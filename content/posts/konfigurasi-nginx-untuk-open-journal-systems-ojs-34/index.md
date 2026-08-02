@@ -2084,5 +2084,4 @@ Pada artikel ini telah dibahas:
 - Validasi Konfigurasi
 - Troubleshooting
 - Best Practices
-
-Pada artikel berikutnya kita akan membahas **Reverse Proxy Nginx untuk Open Journal Systems (OJS) 3.4**, meliputi terminasi SSL/TLS, penerusan header, HSTS, OCSP Stapling, optimasi HTTPS, serta integrasi dengan server aplikasi agar siap digunakan pada lingkungan produksi.
+  
