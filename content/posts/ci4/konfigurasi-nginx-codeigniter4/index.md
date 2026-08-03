@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Konfigurasi Nginx untuk CodeIgniter 4 pada Lingkungan Produksi"
 slug: "konfigurasi-nginx-codeigniter4"
@@ -472,4 +471,3 @@ Konfigurasi Nginx merupakan salah satu bagian terpenting dalam membangun server 
 Dengan menggunakan Document Root yang benar, Unix Socket, Front Controller, dan hanya mengizinkan eksekusi `index.php`, kita dapat mengurangi permukaan serangan sekaligus memperoleh performa yang tinggi.
 
 Pada artikel berikutnya kita akan membahas **Hardening Nginx untuk Aplikasi PHP**, termasuk teknik membatasi akses terhadap file sensitif, mencegah eksekusi file berbahaya, dan menerapkan konfigurasi keamanan tambahan untuk lingkungan produksi.
-````

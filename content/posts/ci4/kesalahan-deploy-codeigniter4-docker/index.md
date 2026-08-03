@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Kesalahan yang Sering Terjadi Saat Deploy CodeIgniter 4 Menggunakan Docker"
 slug: "kesalahan-deploy-codeigniter4-docker"
@@ -514,4 +513,3 @@ Sebagian besar masalah deployment bukan disebabkan oleh Docker atau CodeIgniter 
 Dengan menerapkan struktur direktori yang konsisten, memisahkan source code dan data runtime, menggunakan Unix Socket, mengatur permission dengan benar, serta melengkapi server dengan monitoring dan backup, proses deployment akan menjadi lebih stabil dan mudah dipelihara.
 
 Troubleshooting yang sistematis dan dokumentasi yang baik juga akan mempercepat penyelesaian masalah ketika terjadi gangguan pada lingkungan produksi.
-````

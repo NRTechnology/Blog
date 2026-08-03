@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Monitoring dan Logging PHP-FPM Docker untuk Lingkungan Produksi"
 slug: "monitoring-logging-php-fpm"
@@ -517,4 +516,3 @@ Docker telah menyediakan berbagai fitur bawaan seperti health check, log contain
 Dengan mengombinasikan fitur-fitur tersebut dengan sistem monitoring yang lebih lengkap, administrator dapat menjaga stabilitas aplikasi, mempercepat proses troubleshooting, dan meningkatkan keandalan layanan.
 
 Pada artikel berikutnya kita akan menyusun **checklist hardening server PHP** yang dapat digunakan sebagai panduan sebelum aplikasi dipublikasikan ke lingkungan produksi.
-````

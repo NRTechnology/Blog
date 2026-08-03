@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Konfigurasi PHP-FPM untuk Produksi pada Docker"
 slug: "konfigurasi-php-fpm-produksi"
@@ -404,4 +403,3 @@ Konfigurasi PHP-FPM yang baik merupakan salah satu faktor penting dalam menjaga 
 Dengan memanfaatkan Unix Socket, process manager yang tepat, monitoring, dan konfigurasi pool yang terpisah untuk setiap aplikasi, administrator dapat membangun lingkungan produksi yang lebih aman, lebih mudah dipelihara, dan lebih efisien.
 
 Pada artikel berikutnya kita akan membahas konfigurasi **Nginx** untuk CodeIgniter 4, termasuk optimasi FastCGI dan berbagai teknik hardening agar aplikasi lebih aman ketika diakses melalui internet.
-````

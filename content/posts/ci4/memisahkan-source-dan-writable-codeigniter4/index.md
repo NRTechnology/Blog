@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Memisahkan Source Code dan Direktori Writable pada CodeIgniter 4"
 slug: "memisahkan-source-dan-writable-codeigniter4"
@@ -381,4 +380,3 @@ Dengan memanfaatkan bind mount Docker, source code dapat dipasang sebagai **read
 Pendekatan ini tidak hanya meningkatkan keamanan, tetapi juga mempermudah proses backup, restore, update aplikasi, dan pemeliharaan jangka panjang.
 
 Pada artikel berikutnya kita akan membahas bagaimana menghubungkan aplikasi CodeIgniter 4 yang berjalan di dalam Docker dengan MariaDB yang berjalan di host menggunakan koneksi TCP secara aman dan efisien.
-````

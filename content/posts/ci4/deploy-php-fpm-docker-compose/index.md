@@ -423,4 +423,3 @@ Docker Compose merupakan fondasi utama dalam menjalankan PHP-FPM pada lingkungan
 Dengan menggabungkan **source code read-only**, **writable terpisah**, **health check**, **Unix Socket**, dan **hardening Docker**, kita dapat membangun lingkungan yang lebih aman, mudah dipelihara, dan konsisten.
 
 Pada artikel berikutnya kita akan membahas bagaimana mengoptimalkan **PHP-FPM** melalui konfigurasi pool menggunakan file **zz-custom.conf** sehingga performa aplikasi menjadi lebih baik pada lingkungan produksi.
-````

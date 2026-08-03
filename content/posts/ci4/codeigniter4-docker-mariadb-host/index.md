@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Menghubungkan CodeIgniter 4 Docker ke MariaDB yang Berjalan di Host"
 slug: "codeigniter4-docker-mariadb-host"
@@ -359,4 +358,3 @@ Menghubungkan CodeIgniter 4 yang berjalan di dalam Docker dengan MariaDB yang be
 Dengan menggunakan koneksi TCP, setiap aplikasi dapat memanfaatkan layanan database yang sama tanpa perlu melakukan bind mount Unix Socket. Pendekatan ini memudahkan proses deployment, pemeliharaan, serta migrasi aplikasi ke server lain.
 
 Pada artikel berikutnya kita akan membahas bagaimana memonitor container PHP-FPM, membaca log, dan melakukan troubleshooting apabila terjadi masalah pada lingkungan produksi.
-````
