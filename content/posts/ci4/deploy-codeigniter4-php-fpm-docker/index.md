@@ -38,6 +38,29 @@ Pendekatan ini memungkinkan setiap aplikasi memiliki lingkungan PHP yang terisol
 
 ---
 
+```markdown
+> 📚 **Seri Docker PHP Production**
+>
+> Artikel ini merupakan bagian dari seri **Docker PHP Production**. Untuk mendapatkan pemahaman yang utuh, disarankan membaca artikel secara berurutan.
+>
+> 1. **Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host** *(artikel ini)*
+> 2. [Membangun Image PHP 8.3 Docker untuk Produksi](../membangun-image-php83-docker/)
+> 3. [Deploy PHP-FPM Menggunakan Docker Compose untuk CodeIgniter 4](../deploy-php-fpm-docker-compose/)
+> 4. [Konfigurasi PHP-FPM untuk Produksi pada Docker](../konfigurasi-php-fpm-produksi/)
+> 5. [Konfigurasi Nginx untuk CodeIgniter 4 pada Lingkungan Produksi](../konfigurasi-nginx-codeigniter4/)
+> 6. [Hardening Nginx untuk Aplikasi PHP pada Lingkungan Produksi](../hardening-nginx-aplikasi-php/)
+> 7. [Memisahkan Source Code dan Direktori Writable pada CodeIgniter 4](../memisahkan-source-dan-writable-codeigniter4/)
+> 8. [Menghubungkan CodeIgniter 4 Docker ke MariaDB yang Berjalan di Host](../codeigniter4-docker-mariadb-host/)
+> 9. [Monitoring dan Logging PHP-FPM Docker untuk Lingkungan Produksi](../monitoring-logging-php-fpm/)
+> 10. [Checklist Hardening Server PHP Sebelum Go Live](../checklist-hardening-server-php/)
+> 11. [Studi Kasus: Deploy CodeIgniter 4 ke Lingkungan Produksi](../studi-kasus-deploy-codeigniter4-produksi/)
+>
+> **Artikel Tambahan**
+>
+> - [Kesalahan yang Sering Terjadi Saat Deploy CodeIgniter 4 Menggunakan Docker](../kesalahan-deploy-codeigniter4-docker/)
+```
+---
+
 ## Arsitektur
 
 Arsitektur yang digunakan dapat digambarkan sebagai berikut.
@@ -76,12 +99,12 @@ Agar source code dan data aplikasi terpisah, saya menggunakan struktur direktori
 
 ```text
 /opt/docker/apps/
-└── gkbbrebes/
+└── myapp/
     ├── docker-compose.yml
     └── zz-custom.conf
 
 /var/apps/
-└── gkbbrebes/
+└── myapp/
     ├── backup/
     ├── data/
     │   └── writable/
@@ -108,7 +131,7 @@ Secara default, container PHP tidak memiliki kebutuhan untuk mengubah source cod
 Dengan memberikan mount:
 
 ```yaml
-- /var/apps/gkbbrebes/htdocs:/var/www/html:ro
+- /var/apps/myapp/htdocs:/var/www/html:ro
 ```
 
 source code menjadi **Read Only**.
@@ -154,13 +177,13 @@ Komunikasi antara Nginx dan PHP-FPM dilakukan menggunakan Unix Socket.
 Contoh konfigurasi PHP-FPM:
 
 ```ini
-listen=/run/php/gkbbrebes.sock
+listen=/run/php/myapp.sock
 ```
 
 Sedangkan pada Nginx:
 
 ```nginx
-fastcgi_pass unix:/run/php/gkbbrebes.sock;
+fastcgi_pass unix:/run/php/myapp.sock;
 ```
 
 Keuntungan Unix Socket:
@@ -200,7 +223,7 @@ untuk menyimpan seluruh data runtime.
 Direktori tersebut dipindahkan ke:
 
 ```text
-/var/apps/gkbbrebes/data/writable
+/var/apps/myapp/data/writable
 ```
 
 yang kemudian di-mount kembali ke dalam container.

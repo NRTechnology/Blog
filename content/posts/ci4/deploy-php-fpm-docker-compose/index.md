@@ -1,4 +1,3 @@
-````markdown
 ---
 title: "Deploy PHP-FPM Menggunakan Docker Compose untuk CodeIgniter 4"
 slug: "deploy-php-fpm-docker-compose"
@@ -83,12 +82,12 @@ Dengan arsitektur ini setiap aplikasi memiliki container PHP sendiri, sedangkan 
 
 ```text
 /opt/docker/apps/
-└── gkbbrebes/
+└── myapp/
     ├── docker-compose.yml
     └── zz-custom.conf
 
 /var/apps/
-└── gkbbrebes/
+└── myapp/
     ├── backup/
     ├── data/
     │   └── writable/
@@ -112,7 +111,7 @@ Penjelasan:
 Buat file berikut.
 
 ```text
-/opt/docker/apps/gkbbrebes/docker-compose.yml
+/opt/docker/apps/myapp/docker-compose.yml
 ```
 
 Isi file tersebut.
@@ -121,7 +120,7 @@ Isi file tersebut.
 services:
 
   app:
-    container_name: gkbbrebes-php
+    container_name: myapp-php
 
     image: local/php:8.3
 
@@ -149,13 +148,13 @@ services:
       # PHP Configuration
       - /opt/docker/images/php8.3/php.ini:/usr/local/etc/php/conf.d/99-custom.ini:ro
 
-      - /opt/docker/apps/gkbbrebes/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
+      - /opt/docker/apps/myapp/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
 
       # Source Code
-      - /var/apps/gkbbrebes/htdocs:/var/www/html:ro
+      - /var/apps/myapp/htdocs:/var/www/html:ro
 
       # Runtime Data
-      - /var/apps/gkbbrebes/data/writable:/var/www/html/writable:rw
+      - /var/apps/myapp/data/writable:/var/www/html/writable:rw
 
     tmpfs:
       - /tmp
@@ -250,13 +249,13 @@ Hal ini penting untuk log, session, dan timestamp database.
 Source code dipasang sebagai read-only.
 
 ```yaml
-- /var/apps/gkbbrebes/htdocs:/var/www/html:ro
+- /var/apps/myapp/htdocs:/var/www/html:ro
 ```
 
 Sedangkan direktori runtime dipasang sebagai read-write.
 
 ```yaml
-- /var/apps/gkbbrebes/data/writable:/var/www/html/writable:rw
+- /var/apps/myapp/data/writable:/var/www/html/writable:rw
 ```
 
 Pendekatan ini memberikan beberapa keuntungan.
@@ -285,7 +284,7 @@ Dengan demikian administrator cukup mengubah satu file php.ini tanpa harus memba
 Konfigurasi PHP-FPM juga dipisahkan.
 
 ```yaml
-- /opt/docker/apps/gkbbrebes/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
+- /opt/docker/apps/myapp/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
 ```
 
 Setiap aplikasi dapat memiliki socket PHP-FPM sendiri.
@@ -293,7 +292,7 @@ Setiap aplikasi dapat memiliki socket PHP-FPM sendiri.
 Contoh.
 
 ```text
-/run/php/gkbbrebes.sock
+/run/php/myapp.sock
 ```
 
 ---
@@ -339,7 +338,7 @@ Hal ini mencegah file log tumbuh tanpa batas dan menghabiskan ruang penyimpanan.
 Masuk ke direktori aplikasi.
 
 ```bash
-cd /opt/docker/apps/gkbbrebes
+cd /opt/docker/apps/myapp
 ```
 
 Jalankan container.
@@ -361,7 +360,7 @@ docker ps
 Untuk melihat log container.
 
 ```bash
-docker logs -f gkbbrebes-php
+docker logs -f myapp-php
 ```
 
 ---
@@ -377,7 +376,7 @@ ls -l /run/php
 Contoh.
 
 ```text
-gkbbrebes.sock
+myapp.sock
 ```
 
 Socket tersebut nantinya akan digunakan oleh Nginx.
@@ -387,7 +386,7 @@ Socket tersebut nantinya akan digunakan oleh Nginx.
 # Memastikan Health Check
 
 ```bash
-docker inspect gkbbrebes-php --format '{{.State.Health.Status}}'
+docker inspect myapp-php --format '{{.State.Health.Status}}'
 ```
 
 Apabila berhasil akan menghasilkan.

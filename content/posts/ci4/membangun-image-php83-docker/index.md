@@ -1,4 +1,3 @@
-
 ---
 title: "Membangun Image PHP 8.3 Docker untuk Produksi"
 slug: "membangun-image-php83-docker"
@@ -298,7 +297,7 @@ Dengan mengetahui UID dan GID, kita dapat memberikan permission yang benar pada 
 Misalnya:
 
 ```bash
-chown -R 33:33 /var/apps/gkbbrebes/data/writable
+chown -R 33:33 /var/apps/myapp/data/writable
 ```
 
 Pendekatan ini jauh lebih baik dibandingkan memberikan permission 777.
