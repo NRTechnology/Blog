@@ -38,7 +38,6 @@ Pendekatan ini memungkinkan setiap aplikasi memiliki lingkungan PHP yang terisol
 
 ---
 
-```markdown
 > 📚 **Seri Docker PHP Production**
 >
 > Artikel ini merupakan bagian dari seri **Docker PHP Production**. Untuk mendapatkan pemahaman yang utuh, disarankan membaca artikel secara berurutan.
@@ -58,7 +57,7 @@ Pendekatan ini memungkinkan setiap aplikasi memiliki lingkungan PHP yang terisol
 > **Artikel Tambahan**
 >
 > - [Kesalahan yang Sering Terjadi Saat Deploy CodeIgniter 4 Menggunakan Docker](../kesalahan-deploy-codeigniter4-docker/)
-```
+
 ---
 
 ## Arsitektur
