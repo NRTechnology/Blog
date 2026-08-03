@@ -10,7 +10,7 @@ description: "Panduan lengkap melakukan hardening Nginx untuk aplikasi PHP agar 
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 6
 
 tags:

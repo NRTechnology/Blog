@@ -10,7 +10,7 @@ description: "Panduan mengoptimalkan PHP-FPM pada Docker untuk lingkungan produk
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 4
 
 tags:

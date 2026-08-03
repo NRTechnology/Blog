@@ -10,7 +10,7 @@ description: "Panduan menghubungkan aplikasi CodeIgniter 4 yang berjalan di Dock
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 8
 
 tags:

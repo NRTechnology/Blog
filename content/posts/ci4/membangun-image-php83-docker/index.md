@@ -10,7 +10,7 @@ description: "Panduan membangun image Docker PHP 8.3 untuk lingkungan produksi y
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 2
 
 tags:

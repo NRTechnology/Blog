@@ -10,7 +10,7 @@ description: "Panduan melakukan monitoring dan logging PHP-FPM Docker pada lingk
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 9
 
 tags:

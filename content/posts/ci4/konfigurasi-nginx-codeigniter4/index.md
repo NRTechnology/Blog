@@ -10,7 +10,7 @@ description: "Panduan lengkap mengkonfigurasi Nginx sebagai reverse proxy untuk 
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 5
 
 tags:

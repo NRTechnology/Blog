@@ -10,7 +10,7 @@ description: "Checklist hardening server PHP berbasis Nginx, Docker PHP-FPM, dan
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 10
 
 tags:

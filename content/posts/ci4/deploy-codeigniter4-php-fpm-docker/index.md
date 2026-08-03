@@ -5,7 +5,7 @@ draft: false
 author: "NR Technology"
 description: "Membangun lingkungan produksi CodeIgniter 4 menggunakan Docker PHP-FPM, Nginx di host, dan MariaDB di host dengan pendekatan source code read-only."
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 1
 
 tags:

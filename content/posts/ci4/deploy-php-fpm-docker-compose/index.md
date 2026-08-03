@@ -10,7 +10,7 @@ description: "Membangun container PHP-FPM menggunakan Docker Compose untuk CodeI
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 3
 
 tags:

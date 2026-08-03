@@ -10,7 +10,7 @@ description: "Studi kasus deployment aplikasi CodeIgniter 4 pada lingkungan prod
 author: "NR Technology"
 
 series:
-  - Docker PHP Production
+  - Membangun Platform Produksi CodeIgniter 4
 weight: 11
 
 tags:
