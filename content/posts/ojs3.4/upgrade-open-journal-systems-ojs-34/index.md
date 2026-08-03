@@ -14,6 +14,12 @@ tags:
 categories:
   - OJS
   - Linux
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 9
+
+author: "NR Technology"
 ---
 
 # Upgrade Open Journal Systems (OJS) 3.4

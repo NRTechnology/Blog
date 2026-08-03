@@ -15,6 +15,12 @@ categories:
   - OJS
   - Docker
   - Linux
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 5
+
+author: "NR Technology"
 ---
 
 # Instalasi Open Journal Systems (OJS) 3.4

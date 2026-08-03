@@ -15,6 +15,12 @@ categories:
   - Docker
   - Linux
   - OJS
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 2
+
+author: "NR Technology"
 ---
 
 # Instalasi Docker PHP-FPM untuk Open Journal Systems (OJS) 3.4

@@ -15,6 +15,12 @@ categories:
   - OJS
   - Backup
   - Linux
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 7
+
+author: "NR Technology"
 ---
 
 # Backup dan Restore Open Journal Systems (OJS) 3.4
@@ -1931,7 +1937,3 @@ Pada artikel ini telah dibahas.
 Strategi backup yang baik tidak hanya melindungi data dari kehilangan, tetapi juga memastikan layanan dapat dipulihkan dengan cepat dan konsisten ketika terjadi gangguan.
 
 ---
-
-# Artikel Selanjutnya
-
-Pada seri berikutnya akan dibahas **Upgrade Open Journal Systems (OJS) 3.4**, meliputi persiapan upgrade, backup sebelum upgrade, kompatibilitas plugin dan theme, proses upgrade aplikasi, migrasi database, validasi pasca-upgrade, troubleshooting, serta praktik terbaik untuk melakukan upgrade dengan risiko seminimal mungkin.

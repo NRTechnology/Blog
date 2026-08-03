@@ -2,6 +2,12 @@
 title: "Membangun Open Journal Systems (OJS) 3.4 Menggunakan Nginx Reverse Proxy dan Docker PHP-FPM"
 date: 2026-08-02
 draft: false
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 1
+
+author: "NR Technology"
 tags:
   - OJS
   - Docker

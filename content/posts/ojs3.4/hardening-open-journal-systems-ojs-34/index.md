@@ -14,6 +14,12 @@ tags:
 categories:
   - OJS
   - Security
+series:
+  - "Membangun Open Journal Systems (OJS) 3.4"
+
+weight: 6
+
+author: "NR Technology"
 ---
 
 # Hardening Open Journal Systems (OJS) 3.4
