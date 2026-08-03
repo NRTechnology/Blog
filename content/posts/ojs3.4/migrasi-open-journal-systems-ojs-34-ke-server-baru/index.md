@@ -14,9 +14,9 @@ tags:
 categories:
   - OJS
   - Linux
+
 series:
   - "Membangun Open Journal Systems (OJS) 3.4"
-
 weight: 8
 
 author: "NR Technology"

@@ -14,9 +14,9 @@ categories:
   - Nginx
   - Docker
   - OJS
+
 series:
   - "Membangun Open Journal Systems (OJS) 3.4"
-
 weight: 4
 
 author: "NR Technology"

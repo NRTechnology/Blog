@@ -15,9 +15,9 @@ categories:
   - OJS
   - Backup
   - Linux
+
 series:
   - "Membangun Open Journal Systems (OJS) 3.4"
-
 weight: 7
 
 author: "NR Technology"
