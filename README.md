@@ -9,6 +9,12 @@ https://nrtechnology.github.io/Blog/
 https://github.com/NRTechnology/Blog
 
 ---
+☕ **Dukung NR Technology**
+
+Jika artikel ini bermanfaat, Anda dapat mendukung pengembangan blog melalui Saweria.
+
+👉 **[Traktir Kopi ☕](https://saweria.co/nrtechnologyid)**
+---
 
 ## About
 
