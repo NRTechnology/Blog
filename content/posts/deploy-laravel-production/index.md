@@ -1,26 +1,46 @@
-+++
-date = '2026-07-29T07:00:00+07:00'
-draft = false
-title = 'Deployment Laravel Production dengan Docker, PHP 8.3, MySQL, dan Nginx'
-categories = ['Web Server']
-tags = [
-    'Laravel',
-    'Laravel 12',
-    'Docker',
-    'PHP',
-    'PHP 8.3',
-    'PHP-FPM',
-    'MySQL',
-    'Nginx',
-    'Ubuntu Server',
-    'Web Server',
-    'Server Hardening',
-    'DevOps',
-    'Git',
-    'GitHub',
-    'Deployment'
-]
-+++
+---
+title: "Deployment Laravel Production dengan Docker, PHP 8.3, MySQL, dan Nginx"
+date: 2026-08-04
+draft: false
+description: "Panduan lengkap deployment aplikasi Laravel Production menggunakan Docker PHP-FPM, Nginx, dan MySQL pada Ubuntu Server, mulai dari persiapan server, konfigurasi Docker, Git deployment, Vite build, migration database, storage, hingga hardening keamanan."
+
+tags:
+  - Laravel
+  - Laravel 12
+  - Docker
+  - PHP
+  - PHP 8.3
+  - PHP-FPM
+  - MySQL
+  - Nginx
+  - Ubuntu Server
+  - Linux
+  - Web Server
+  - Deployment
+  - DevOps
+  - Git
+  - GitHub
+  - Vite
+  - Docker Security
+  - Server Hardening
+
+categories:
+  - Laravel
+  - Docker
+  - Web Server
+
+series:
+  - "Deployment Aplikasi Web"
+
+weight: 1
+
+author: "NR Technology"
+
+cover:
+  image: "laravel-cover.png"
+  alt: "Deployment Laravel Production menggunakan Docker, PHP 8.3, MySQL, dan Nginx pada Ubuntu Server"
+  caption: "Panduan deployment Laravel Production dengan Docker PHP-FPM, MySQL, dan Nginx beserta Git deployment, Vite build, migration database, storage, dan hardening keamanan."
+---
 
 ## 1. Pendahuluan
 
