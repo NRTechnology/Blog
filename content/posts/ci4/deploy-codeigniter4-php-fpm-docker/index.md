@@ -275,3 +275,6 @@ Menjalankan CodeIgniter 4 menggunakan kombinasi **Nginx pada host**, **PHP-FPM d
 Dengan memisahkan source code dan direktori writable, menggunakan Unix Socket untuk komunikasi antara Nginx dan PHP-FPM, serta menerapkan prinsip **read-only source**, keamanan dan kemudahan pengelolaan aplikasi dapat meningkat secara signifikan.
 
 Pendekatan ini juga sangat cocok digunakan pada server yang mengelola banyak aplikasi karena setiap aplikasi cukup memiliki satu container PHP-FPM, sementara Nginx dan MariaDB tetap berjalan secara terpusat.
+
+---
+{{< saweria >}}
