@@ -33,6 +33,11 @@ keywords:
   - php docker mysql
   - docker php database
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showWordCount: true

@@ -34,6 +34,11 @@ keywords:
   - production checklist
   - linux security
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showWordCount: true
@@ -418,3 +423,6 @@ Checklist pada artikel ini dapat digunakan sebagai acuan sebelum aplikasi dipubl
 Dengan menerapkan prinsip *least privilege*, memisahkan source code dari data runtime, menggunakan Docker secara aman, mengamankan Nginx dan PHP-FPM, serta melengkapi server dengan monitoring dan backup yang memadai, lingkungan produksi akan menjadi lebih stabil, mudah dipelihara, dan memiliki tingkat keamanan yang lebih baik.
 
 Pada artikel terakhir seri ini, kita akan menggabungkan seluruh konsep yang telah dibahas ke dalam sebuah studi kasus deployment lengkap, mulai dari server kosong hingga aplikasi CodeIgniter 4 siap digunakan di lingkungan produksi.
+
+---
+{{< saweria >}}

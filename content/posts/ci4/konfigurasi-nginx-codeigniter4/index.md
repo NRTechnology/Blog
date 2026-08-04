@@ -33,6 +33,11 @@ keywords:
   - php-fpm socket
   - nginx production
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showCodeCopyButtons: true
@@ -471,3 +476,6 @@ Konfigurasi Nginx merupakan salah satu bagian terpenting dalam membangun server 
 Dengan menggunakan Document Root yang benar, Unix Socket, Front Controller, dan hanya mengizinkan eksekusi `index.php`, kita dapat mengurangi permukaan serangan sekaligus memperoleh performa yang tinggi.
 
 Pada artikel berikutnya kita akan membahas **Hardening Nginx untuk Aplikasi PHP**, termasuk teknik membatasi akses terhadap file sensitif, mencegah eksekusi file berbahaya, dan menerapkan konfigurasi keamanan tambahan untuk lingkungan produksi.
+
+---
+{{< saweria >}}

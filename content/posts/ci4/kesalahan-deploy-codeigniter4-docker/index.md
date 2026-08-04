@@ -30,6 +30,11 @@ keywords:
   - docker deployment
   - php production
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showWordCount: true
@@ -513,3 +518,6 @@ Sebagian besar masalah deployment bukan disebabkan oleh Docker atau CodeIgniter 
 Dengan menerapkan struktur direktori yang konsisten, memisahkan source code dan data runtime, menggunakan Unix Socket, mengatur permission dengan benar, serta melengkapi server dengan monitoring dan backup, proses deployment akan menjadi lebih stabil dan mudah dipelihara.
 
 Troubleshooting yang sistematis dan dokumentasi yang baik juga akan mempercepat penyelesaian masalah ketika terjadi gangguan pada lingkungan produksi.
+
+---
+{{< saweria >}}

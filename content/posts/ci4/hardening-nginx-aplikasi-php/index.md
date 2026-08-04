@@ -33,6 +33,11 @@ keywords:
   - codeigniter security
   - nginx production
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showCodeCopyButtons: true
@@ -525,3 +530,6 @@ Hardening merupakan bagian penting dari proses deployment aplikasi web.
 Tidak ada satu konfigurasi yang mampu menghentikan seluruh serangan, tetapi kombinasi berbagai teknik sederhana seperti membatasi eksekusi PHP, memisahkan source code dan direktori writable, menggunakan Unix Socket, memblokir file sensitif, serta menerapkan prinsip *least privilege* akan secara signifikan mengurangi permukaan serangan.
 
 Pada artikel berikutnya kita akan membahas bagaimana memisahkan **source code** dan **direktori writable** pada CodeIgniter 4 sehingga proses deployment menjadi lebih aman, lebih mudah dipelihara, dan lebih sesuai untuk lingkungan produksi.
+
+---
+{{< saweria >}}

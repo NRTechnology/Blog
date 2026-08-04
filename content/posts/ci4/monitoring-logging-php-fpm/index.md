@@ -32,6 +32,11 @@ keywords:
   - docker healthcheck
   - monitoring docker
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showWordCount: true
@@ -516,3 +521,6 @@ Docker telah menyediakan berbagai fitur bawaan seperti health check, log contain
 Dengan mengombinasikan fitur-fitur tersebut dengan sistem monitoring yang lebih lengkap, administrator dapat menjaga stabilitas aplikasi, mempercepat proses troubleshooting, dan meningkatkan keandalan layanan.
 
 Pada artikel berikutnya kita akan menyusun **checklist hardening server PHP** yang dapat digunakan sebagai panduan sebelum aplikasi dipublikasikan ke lingkungan produksi.
+
+---
+{{< saweria >}}

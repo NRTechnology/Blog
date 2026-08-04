@@ -32,6 +32,11 @@ keywords:
   - php production
   - php socket
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showCodeCopyButtons: true
@@ -403,3 +408,6 @@ Konfigurasi PHP-FPM yang baik merupakan salah satu faktor penting dalam menjaga 
 Dengan memanfaatkan Unix Socket, process manager yang tepat, monitoring, dan konfigurasi pool yang terpisah untuk setiap aplikasi, administrator dapat membangun lingkungan produksi yang lebih aman, lebih mudah dipelihara, dan lebih efisien.
 
 Pada artikel berikutnya kita akan membahas konfigurasi **Nginx** untuk CodeIgniter 4, termasuk optimasi FastCGI dan berbagai teknik hardening agar aplikasi lebih aman ketika diakses melalui internet.
+
+---
+{{< saweria >}}

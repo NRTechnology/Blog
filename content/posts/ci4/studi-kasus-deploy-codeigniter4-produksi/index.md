@@ -34,6 +34,11 @@ keywords:
   - codeigniter docker
   - php production
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showWordCount: true
@@ -540,3 +545,6 @@ Tidak ada satu arsitektur yang cocok untuk semua kebutuhan, namun pendekatan **N
 Dengan memisahkan source code dari data runtime, menggunakan image Docker yang terstandarisasi, menerapkan hardening pada setiap lapisan, serta melengkapi server dengan monitoring dan backup, lingkungan produksi akan menjadi lebih mudah dipelihara dan lebih siap menghadapi perubahan di masa depan.
 
 Semoga seri **Docker PHP Production** ini dapat menjadi referensi bagi administrator sistem, pengembang, maupun praktisi DevOps yang ingin membangun platform PHP yang stabil, aman, dan mudah dikembangkan.
+
+---
+{{< saweria >}}

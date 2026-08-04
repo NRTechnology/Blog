@@ -32,6 +32,11 @@ keywords:
   - php-fpm docker
   - docker image php
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showCodeCopyButtons: true
@@ -336,3 +341,6 @@ Beberapa praktik yang saya gunakan pada server produksi:
 Membangun image PHP sendiri memberikan banyak keuntungan untuk lingkungan produksi. Selain membuat deployment lebih cepat, pendekatan ini juga menghasilkan konfigurasi yang konsisten pada seluruh aplikasi.
 
 Pada artikel berikutnya kita akan membahas bagaimana membangun **Docker Compose** yang aman untuk menjalankan CodeIgniter 4 menggunakan image **local/php:8.3** yang telah dibuat pada artikel ini.
+
+---
+{{< saweria >}}

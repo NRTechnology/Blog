@@ -32,6 +32,11 @@ keywords:
   - php docker production
   - docker php-fpm
 
+cover:
+  image: "ci4-cover.png"
+  alt: "Deploy Aplikasi CodeIgniter 4 Menggunakan PHP-FPM Docker dan Nginx Host"
+  caption: "CodeIgniter 4 + PHP-FPM Docker + Nginx Host"
+
 toc: true
 showReadingTime: true
 showCodeCopyButtons: true
@@ -423,3 +428,6 @@ Docker Compose merupakan fondasi utama dalam menjalankan PHP-FPM pada lingkungan
 Dengan menggabungkan **source code read-only**, **writable terpisah**, **health check**, **Unix Socket**, dan **hardening Docker**, kita dapat membangun lingkungan yang lebih aman, mudah dipelihara, dan konsisten.
 
 Pada artikel berikutnya kita akan membahas bagaimana mengoptimalkan **PHP-FPM** melalui konfigurasi pool menggunakan file **zz-custom.conf** sehingga performa aplikasi menjadi lebih baik pada lingkungan produksi.
+
+---
+{{< saweria >}}
