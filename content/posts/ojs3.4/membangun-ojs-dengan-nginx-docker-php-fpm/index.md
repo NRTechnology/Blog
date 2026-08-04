@@ -23,7 +23,7 @@ weight: 1
 
 author: "NR Technology"
 cover:
-  image: "https://nrtechnology.github.io/Blog/assets/ojs-cover.png"
+  image: "../assets/ojs-cover.png"
   alt: "Open Journal Systems (OJS) 3.4"
   caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
