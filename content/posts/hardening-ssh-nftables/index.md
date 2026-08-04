@@ -1,21 +1,41 @@
-+++
-date = '2026-07-29T07:00:00+07:00'
-draft = false
-title = 'Hardening SSH dengan nftables: Membatasi Akses dan Mencegah SSH Jumping'
-categories = ['Cyber Security']
-tags = [
-    'SSH',
-    'OpenSSH',
-    'nftables',
-    'Linux Security',
-    'Server Hardening',
-    'Firewall',
-    'VPN',
-    'Lateral Movement',
-    'SSH Jumping',
-    'Ubuntu Server'
-]
-+++
+---
+title: "Hardening SSH dengan nftables: Membatasi Akses dan Mencegah SSH Jumping"
+date: 2026-07-29
+draft: false
+description: "Panduan lengkap melakukan hardening SSH pada Ubuntu Server menggunakan nftables untuk membatasi akses, mencegah SSH Jumping, mengurangi risiko lateral movement, dan meningkatkan keamanan server produksi."
+
+tags:
+  - SSH
+  - OpenSSH
+  - nftables
+  - Linux Security
+  - Server Hardening
+  - Firewall
+  - Ubuntu Server
+  - Cyber Security
+  - SSH Jumping
+  - Lateral Movement
+  - Secure Shell
+  - Access Control
+  - Network Security
+
+categories:
+  - Cyber Security
+  - Linux
+  - Ubuntu Server
+
+series:
+  - "Hardening Linux Server"
+
+weight: 3
+
+author: "NR Technology"
+
+cover:
+  image: "sshjumping-cover.png"
+  alt: "Hardening SSH menggunakan nftables untuk membatasi akses dan mencegah SSH Jumping pada Ubuntu Server"
+  caption: "Panduan implementasi hardening SSH menggunakan nftables untuk membatasi akses, mencegah SSH Jumping, dan meningkatkan keamanan server Linux."
+---
 
 SSH (**Secure Shell**) merupakan salah satu layanan yang hampir selalu tersedia pada server Linux. Administrator menggunakannya untuk melakukan remote administration, maintenance, deployment aplikasi, troubleshooting, hingga transfer file.
 
