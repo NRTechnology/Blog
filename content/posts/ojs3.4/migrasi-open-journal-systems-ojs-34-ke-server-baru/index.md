@@ -20,6 +20,10 @@ series:
 weight: 8
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Migrasi Open Journal Systems (OJS) dari Server Lama ke Server Baru
@@ -1970,3 +1974,6 @@ Migrasi yang direncanakan dengan baik akan menghasilkan proses perpindahan layan
 # Artikel Selanjutnya
 
 Pada seri berikutnya akan dibahas **Upgrade Open Journal Systems (OJS) 3.4**, meliputi persiapan sebelum upgrade, pemeriksaan kompatibilitas, backup sebelum upgrade, proses upgrade aplikasi, migrasi database, validasi pasca-upgrade, troubleshooting, serta praktik terbaik untuk melakukan upgrade pada lingkungan produksi.
+
+---
+{{< saweria >}}

@@ -299,3 +299,6 @@ sudo resize2fs /dev/ubuntu-vg/ubuntu-lv
 Dengan memanfaatkan **Logical Volume Manager (LVM)**, administrator dapat memperbesar kapasitas root filesystem tanpa melakukan reinstall sistem operasi maupun memindahkan data. Seluruh proses dapat dilakukan secara **online** sehingga layanan tetap berjalan selama proses resize berlangsung.
 
 Pendekatan ini sangat cocok digunakan pada server produksi yang membutuhkan fleksibilitas dalam pengelolaan kapasitas penyimpanan.
+
+---
+{{< saweria >}}

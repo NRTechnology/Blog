@@ -21,6 +21,10 @@ series:
 weight: 7
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Backup dan Restore Open Journal Systems (OJS) 3.4
@@ -1937,3 +1941,4 @@ Pada artikel ini telah dibahas.
 Strategi backup yang baik tidak hanya melindungi data dari kehilangan, tetapi juga memastikan layanan dapat dipulihkan dengan cepat dan konsisten ketika terjadi gangguan.
 
 ---
+{{< saweria >}}

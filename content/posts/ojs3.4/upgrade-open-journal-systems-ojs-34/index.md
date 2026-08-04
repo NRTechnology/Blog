@@ -20,6 +20,10 @@ series:
 weight: 9
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Upgrade Open Journal Systems (OJS) 3.4
@@ -1434,3 +1438,6 @@ Pada artikel ini telah dibahas.
 - Best Practices.
 
 Dengan selesainya artikel ini, rangkaian **Membangun Open Journal Systems (OJS) 3.4 dengan Docker** telah mencakup seluruh siklus implementasi, mulai dari perencanaan infrastruktur, instalasi, hardening, backup, restore, migrasi, hingga pemeliharaan melalui proses upgrade pada lingkungan produksi.
+
+---
+{{< saweria >}}

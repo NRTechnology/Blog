@@ -22,6 +22,10 @@ series:
 weight: 1
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Pendahuluan
@@ -283,3 +287,5 @@ Memisahkan Nginx, PHP-FPM, MariaDB, dan data aplikasi memberikan beberapa keuntu
 - lebih mudah melakukan hardening
 
 Pendekatan ini juga sangat cocok diterapkan pada server yang mengelola beberapa aplikasi PHP secara bersamaan karena setiap aplikasi dapat memiliki container PHP-FPM sendiri tanpa harus berbagi runtime dengan aplikasi lain.
+
+---

@@ -21,6 +21,10 @@ series:
 weight: 2
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Instalasi Docker PHP-FPM untuk Open Journal Systems (OJS) 3.4
@@ -1273,3 +1277,6 @@ Container yang dibangun tidak hanya berfungsi sebagai runtime PHP, tetapi juga m
 Dengan pendekatan ini, proses backup, upgrade PHP, migrasi server, maupun pemeliharaan aplikasi menjadi jauh lebih mudah dibandingkan instalasi PHP secara langsung pada sistem operasi.
 
 Pada artikel berikutnya kita akan membahas konfigurasi **PHP-FPM**, meliputi penyusunan file **php.ini** dan **www.conf**, optimasi performa, serta konfigurasi yang direkomendasikan agar Open Journal Systems dapat berjalan secara optimal pada lingkungan produksi.
+
+---
+{{< saweria >}}

@@ -21,6 +21,10 @@ series:
 weight: 5
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Instalasi Open Journal Systems (OJS) 3.4
@@ -1841,3 +1845,6 @@ Dengan pendekatan tersebut, lingkungan OJS menjadi lebih mudah dipelihara, lebih
 # Artikel Selanjutnya
 
 Pada seri berikutnya akan dibahas **Backup dan Restore Open Journal Systems (OJS) 3.4**, meliputi strategi backup database, backup direktori `ojsdata`, backup source code, prosedur restore, migrasi server, serta praktik terbaik untuk pemulihan layanan setelah terjadi kegagalan sistem.
+
+---
+{{< saweria >}}

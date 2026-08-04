@@ -20,6 +20,10 @@ series:
 weight: 6
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Hardening Open Journal Systems (OJS) 3.4
@@ -1634,3 +1638,6 @@ Hardening bukanlah proses yang selesai setelah implementasi awal. Administrator 
 # Artikel Selanjutnya
 
 Pada seri berikutnya akan dibahas **Backup dan Restore Open Journal Systems (OJS) 3.4**, meliputi strategi backup database, backup direktori `ojsdata`, pemulihan layanan, migrasi server, serta praktik terbaik untuk menjaga ketersediaan data dan mempercepat proses disaster recovery.
+
+---
+{{< saweria >}}

@@ -20,6 +20,10 @@ series:
 weight: 3
 
 author: "NR Technology"
+cover:
+  image: "../assets/ojs-cover.png"
+  alt: "Open Journal Systems (OJS) 3.4"
+  caption: "Seri Membangun Open Journal Systems (OJS) 3.4"
 ---
 
 # Konfigurasi PHP-FPM untuk Open Journal Systems (OJS) 3.4
@@ -1732,3 +1736,6 @@ Pada artikel ini telah dibahas:
 - Best Practices
 
 Pada artikel berikutnya kita akan membahas **Konfigurasi Nginx untuk Open Journal Systems (OJS) 3.4**, meliputi pembuatan virtual host, konfigurasi FastCGI, hardening Nginx, reverse proxy, SSL, hingga optimasi performa agar OJS siap digunakan pada lingkungan produksi.
+
+---
+{{< saweria >}}
