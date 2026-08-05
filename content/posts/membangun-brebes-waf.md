@@ -1,20 +1,47 @@
-+++
-date = '2026-07-19T14:00:00+07:00'
-draft = false
-title = 'Membangun Brebes WAF: Perlindungan Terpusat untuk Aplikasi Web'
-categories = ['Cyber Security']
-tags = [
-    'Brebes WAF',
-    'Web Application Firewall',
-    'WAF',
-    'Nginx',
-    'ModSecurity',
-    'Reverse Proxy',
-    'Web Security',
-    'Cyber Security',
-    'Defense in Depth'
-]
-+++
+---
+title: "Membangun Brebes WAF: Perlindungan Terpusat untuk Aplikasi Web"
+date: 2026-08-05
+draft: false
+description: "Panduan membangun Brebes WAF menggunakan Nginx dan ModSecurity sebagai Web Application Firewall (WAF) untuk memberikan perlindungan terpusat terhadap aplikasi web dari berbagai serangan siber."
+
+tags:
+  - Web Application Firewall
+  - WAF
+  - Brebes WAF
+  - ModSecurity
+  - Nginx
+  - OWASP CRS
+  - OWASP Top 10
+  - Reverse Proxy
+  - Ubuntu Server
+  - Linux
+  - Cyber Security
+  - Web Security
+  - Server Hardening
+  - Real-Time Protection
+  - SQL Injection
+  - Cross Site Scripting
+  - File Upload Security
+  - Brute Force
+  - DevSecOps
+
+categories:
+  - Cyber Security
+  - Web Server
+  - Linux
+
+series:
+  - "Membangun Brebes WAF"
+
+weight: 1
+
+author: "NR Technology"
+
+cover:
+  image: "brebeswaf-cover.png"
+  alt: "Membangun Brebes WAF menggunakan Nginx dan ModSecurity untuk perlindungan terpusat aplikasi web"
+  caption: "Implementasi Brebes WAF berbasis Nginx dan ModSecurity sebagai Web Application Firewall untuk melindungi aplikasi web dari berbagai ancaman keamanan."
+---
 
 Aplikasi berbasis web merupakan salah satu layanan yang banyak digunakan dalam penyelenggaraan sistem pemerintahan. Semakin banyak aplikasi yang dipublikasikan melalui internet, semakin besar pula kebutuhan untuk memberikan perlindungan terhadap berbagai ancaman keamanan yang menargetkan aplikasi web.
 
@@ -189,3 +216,6 @@ Namun, WAF tetap merupakan salah satu bagian dari strategi keamanan secara kesel
 Keamanan aplikasi tetap membutuhkan penerapan secure coding, patch management, hardening server, vulnerability assessment, monitoring, backup, serta mekanisme incident response yang baik.
 
 Pada artikel berikutnya, kita akan mulai membangun arsitektur Brebes WAF dan membahas komponen yang digunakan untuk melakukan reverse proxy, inspeksi HTTP request, serta penerapan Web Application Firewall rule.
+
+---
+{{< saweria >}}

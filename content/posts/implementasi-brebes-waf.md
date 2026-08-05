@@ -1,19 +1,48 @@
-+++
-date = '2026-07-19T15:00:00+07:00'
-draft = false
-title = 'Implementasi Brebes WAF dengan Nginx dan ModSecurity'
-categories = ['Cyber Security']
-tags = [
-    'Brebes WAF',
-    'Web Application Firewall',
-    'WAF',
-    'Nginx',
-    'ModSecurity',
-    'Reverse Proxy',
-    'Web Security',
-    'Ubuntu Server'
-]
-+++
+---
+title: "Implementasi Brebes WAF dengan Nginx dan ModSecurity"
+date: 2026-08-05
+draft: false
+description: "Panduan implementasi Brebes WAF menggunakan Nginx dan ModSecurity sebagai Web Application Firewall (WAF) untuk memberikan perlindungan terpusat terhadap aplikasi web dari berbagai ancaman keamanan siber."
+
+tags:
+  - Brebes WAF
+  - Web Application Firewall
+  - WAF
+  - Nginx
+  - ModSecurity
+  - OWASP CRS
+  - OWASP Top 10
+  - Reverse Proxy
+  - Ubuntu Server
+  - Linux
+  - Cyber Security
+  - Web Security
+  - Server Hardening
+  - Real-Time Protection
+  - SQL Injection
+  - Cross Site Scripting
+  - File Upload Security
+  - Brute Force
+  - Bot Protection
+  - DevSecOps
+
+categories:
+  - Cyber Security
+  - Web Server
+  - Linux
+
+series:
+  - "Membangun Brebes WAF"
+
+weight: 2
+
+author: "NR Technology"
+
+cover:
+  image: "implementasiwaf-cover.png"
+  alt: "Implementasi Brebes WAF menggunakan Nginx dan ModSecurity sebagai Web Application Firewall"
+  caption: "Implementasi Brebes WAF berbasis Nginx dan ModSecurity untuk melindungi aplikasi web dari SQL Injection, Cross Site Scripting (XSS), File Upload Attack, Brute Force, dan berbagai ancaman keamanan lainnya."
+---
 
 Pada artikel sebelumnya kita telah membahas konsep dan tujuan pembangunan Brebes WAF sebagai lapisan perlindungan terpusat untuk aplikasi web.
 

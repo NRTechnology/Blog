@@ -1,8 +1,46 @@
-+++
-date = '2026-07-19T09:38:30+07:00'
-draft = false
-title = 'Membangun Web Server dengan Nginx, PHP-FPM Docker, dan MariaDB'
-+++
+---
+title: "Membangun Web Server dengan Nginx, PHP-FPM Docker, dan MariaDB"
+date: 2026-08-05
+draft: false
+description: "Panduan lengkap membangun web server modern menggunakan Nginx sebagai web server, PHP-FPM dalam Docker sebagai application runtime, dan MariaDB sebagai database server pada Ubuntu Server untuk lingkungan production."
+
+tags:
+  - Nginx
+  - PHP-FPM
+  - Docker
+  - MariaDB
+  - Ubuntu Server
+  - Linux
+  - Web Server
+  - Reverse Proxy
+  - PHP 8.3
+  - Docker Compose
+  - Production Server
+  - Server Hardening
+  - DevOps
+  - Self Hosting
+  - Container
+  - Web Hosting
+  - LEMP
+  - Performance Optimization
+
+categories:
+  - Web Server
+  - Linux
+  - Docker
+
+series:
+  - "Membangun Web Server Production"
+
+weight: 1
+
+author: "NR Technology"
+
+cover:
+  image: "webserver-config.png"
+  alt: "Membangun Web Server menggunakan Nginx, PHP-FPM Docker, dan MariaDB pada Ubuntu Server"
+  caption: "Panduan membangun web server production menggunakan Nginx sebagai web server, PHP-FPM dalam Docker, dan MariaDB sebagai database dengan arsitektur yang aman, ringan, dan mudah dikelola."
+---
 
 Seperti yang sudah diterangkan pada tutorial sebelumnya, Docker adalah platform container yang memungkinkan kita menjalankan aplikasi dalam lingkungan yang terisolasi.
 
@@ -1936,3 +1974,6 @@ MariaDB
 Konfigurasi tersebut membantu mengurangi dampak apabila aplikasi memiliki celah keamanan. Source code tidak dapat dimodifikasi dari dalam container, file upload dipisahkan dari source code, dan direktori upload tidak memiliki jalur eksekusi ke PHP-FPM.
 
 Hardening Nginx tetap merupakan salah satu lapisan pertahanan. Keamanan utama untuk mencegah arbitrary file upload, local file inclusion, command injection, dan remote code execution tetap harus diterapkan pada level aplikasi, dependency, PHP, sistem operasi, serta proses deployment dan monitoring.
+
+---
+{{< saweria >}}
