@@ -1,10 +1,44 @@
-+++
-date = '2026-07-30T12:00:00+07:00'
-draft = false
-title = 'Pelindungan Data Pribadi Pasien: Panduan Kesadaran Keamanan Informasi'
-categories = ['Cybersecurity']
-tags = ['Pelindungan Data Pribadi', 'Keamanan Informasi', 'Security Awareness', 'Data Pasien', 'RSUD', 'Cybersecurity']
-+++
+---
+title: "Pelindungan Data Pribadi Pasien: Panduan Kesadaran Keamanan Informasi"
+date: 2026-07-30
+draft: false
+description: "Panduan kesadaran keamanan informasi mengenai pelindungan data pribadi pasien bagi tenaga kesehatan, pegawai rumah sakit, dan pihak ketiga sesuai dengan prinsip keamanan informasi serta peraturan perundang-undangan yang berlaku di Indonesia."
+
+tags:
+  - Pelindungan Data Pribadi
+  - Data Pribadi
+  - Data Pasien
+  - Keamanan Informasi
+  - Security Awareness
+  - Cyber Security
+  - Rumah Sakit
+  - RSUD
+  - Privasi Data
+  - ISO 27001
+  - ISO 27002
+  - Undang-Undang PDP
+  - UU Nomor 27 Tahun 2022
+  - Tata Kelola TI
+  - Manajemen Risiko
+  - Edukasi Keamanan Siber
+
+categories:
+  - Cyber Security
+  - Security Awareness
+  - E-Book
+
+series:
+  - "Kesadaran Keamanan Informasi"
+
+weight: 1
+
+author: "NR Technology"
+
+cover:
+  image: "ebookpelindungandatapasien-cover.png"
+  alt: "Pelindungan Data Pribadi Pasien: Panduan Kesadaran Keamanan Informasi"
+  caption: "Panduan kesadaran keamanan informasi untuk melindungi data pribadi pasien sesuai Undang-Undang Pelindungan Data Pribadi dan praktik terbaik keamanan informasi di lingkungan rumah sakit."
+---
 
 Data pasien merupakan salah satu aset informasi penting di lingkungan
 rumah sakit. Pelindungan data pasien tidak hanya bergantung pada
