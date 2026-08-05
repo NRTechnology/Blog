@@ -2421,3 +2421,6 @@ Pendekatan ini memberikan beberapa keuntungan:
 - proses deployment dapat diuji menggunakan checklist yang konsisten.
 
 Dengan pola tersebut, deployment Laravel menjadi lebih terstruktur, mudah dikelola, dan memiliki fondasi keamanan yang lebih baik untuk lingkungan production.
+
+---
+{{< saweria >}}
