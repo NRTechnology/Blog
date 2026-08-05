@@ -1084,4 +1084,6 @@ Prinsip akhirnya sederhana:
 > **Sebuah server hanya boleh menerima dan membuat koneksi jaringan yang memang diperlukan untuk menjalankan fungsinya.**
 
 Dengan pendekatan tersebut, firewall tidak hanya menjadi penjaga trafik yang datang dari luar, tetapi juga menjadi mekanisme untuk membatasi apa yang dapat dilakukan sebuah server apabila suatu saat server tersebut berhasil dikompromikan.
-```
+
+---
+{{< saweria >}}

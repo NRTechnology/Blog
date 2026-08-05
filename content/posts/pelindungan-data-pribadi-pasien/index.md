@@ -132,3 +132,6 @@ setiap pihak.**
 
 **Hendrawan Aprillia Ashari, S.T., M.Kom.**\
 Brebes, 2026
+
+---
+{{< saweria >}}
