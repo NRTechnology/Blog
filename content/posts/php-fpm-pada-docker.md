@@ -37,7 +37,7 @@ weight: 1
 author: "NR Technology"
 
 cover:
-  image: "webserver-config.png"
+  image: "webserver-cover.png"
   alt: "Membangun Web Server menggunakan Nginx, PHP-FPM Docker, dan MariaDB pada Ubuntu Server"
   caption: "Panduan membangun web server production menggunakan Nginx sebagai web server, PHP-FPM dalam Docker, dan MariaDB sebagai database dengan arsitektur yang aman, ringan, dan mudah dikelola."
 ---
