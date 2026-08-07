@@ -1,7 +1,7 @@
 ---
 title: "Deploy Laravel Menggunakan Apache, PHP-FPM dan Hardening Apache di Ubuntu Server"
 description: "Panduan lengkap menginstal Apache, PHP-FPM, melakukan deploy aplikasi Laravel, serta menerapkan hardening Apache untuk meningkatkan keamanan server produksi."
-date: 2026-08-07T13:00:00+07:00
+date: 2026-08-07T11:00:00+07:00
 draft: false
 
 categories:
