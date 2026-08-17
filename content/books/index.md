@@ -40,4 +40,20 @@ Pokok pembahasan meliputi:
 
 ---
 
+## 📘 Panduan Praktis Cyber Security Awareness
+
+### Melindungi Data, Sistem, dan Layanan Digital dari Ancaman Siber
+
+**Hendrawan Aprillia Ashari, S.T., M.Kom. — 2026**
+
+Buku ini merupakan panduan edukatif untuk membangun kesadaran keamanan siber di lingkungan organisasi. Materi membahas berbagai ancaman siber, keamanan akun dan credential, phishing, malware, ransomware, keamanan data, backup, pelaporan insiden, serta peran setiap pegawai dalam membangun budaya keamanan siber.
+
+Buku ditujukan bagi ASN, pegawai non-ASN, operator aplikasi, helpdesk, administrator sistem, serta pengguna layanan digital.
+
+> **Kenali ancaman. Lindungi akses. Verifikasi sebelum bertindak. Laporkan jika mencurigakan.**
+
+### 📖 Baca Selengkapnya
+
+[Resume dan informasi buku →](/Blog/posts/panduan-praktis-cyber-security-awareness/)
+
 *Publikasi lainnya akan ditambahkan secara bertahap.*
