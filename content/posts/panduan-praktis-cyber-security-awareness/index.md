@@ -98,7 +98,7 @@ Buku ini bersifat **panduan awareness**, bukan manual konfigurasi teknis sistem 
 ## Download Buku
 
 **[Download Buku Pelindungan Data Pribadi Pasien
-(PDF)](panduan praktis cyber security awarnes_sign.pdf)**
+(PDF)](panduan-praktis-cyber-security-awarnes_sign.pdf)**
 
 ------------------------------------------------------------------------
 
