@@ -1,17 +1,41 @@
-+++
-date = '2026-08-17T14:00:00+07:00'
-draft = false
-title = 'Panduan Praktis Cyber Security Awareness'
-description = 'Panduan praktis membangun kesadaran keamanan siber untuk melindungi data, sistem, akun, dan layanan digital dari berbagai ancaman siber.'
-categories = ['Cybersecurity']
-tags = ['Cyber Security Awareness', 'Keamanan Siber', 'Security Awareness', 'Cybersecurity', 'Phishing', 'Ransomware', 'Keamanan Informasi']
-author = 'Hendrawan Aprillia Ashari, S.T., M.Kom.'
+---
+title: "Panduan Praktis Cyber Security Awareness"
+date: 2026-08-17
+draft: false
+description: "Panduan praktis membangun kesadaran keamanan siber untuk melindungi data, sistem, akun, dan layanan digital dari berbagai ancaman siber."
+
+tags:
+  - Cyber Security Awareness
+  - Keamanan Siber
+  - Security Awareness
+  - Cybersecurity
+  - Phishing
+  - Ransomware
+  - Keamanan Informasi
+  - Data Security
+  - Keamanan Data
+  - Keamanan Akun
+  - Keamanan Credential
+  - Social Engineering
+  - Incident Response
+
+categories:
+  - Cyber Security
+  - Security Awareness
+  - E-Book
+
+series:
+  - "Kesadaran Keamanan Siber"
+
+weight: 2
+
+author: "NR Technology"
+
 cover:
-image: 'cyber_security_awarnes-cover.png'
-alt: 'Panduan Praktis Cyber Security Awareness'
-caption: 'Panduan Praktis Cyber Security Awareness'
-relative: true
-+++
+  image: "cyber_security_awarnes-cover.png"
+  alt: "Panduan Praktis Cyber Security Awareness"
+  caption: "Panduan praktis membangun kesadaran keamanan siber bagi pengguna, pegawai, operator aplikasi, helpdesk, dan administrator sistem."
+---
 
 ## Panduan Praktis Cyber Security Awareness
 
