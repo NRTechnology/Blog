@@ -1,8 +1,21 @@
-+++
-title = 'Buku & Publikasi'
-description = 'Buku dan publikasi NR Technology'
-draft = false
-+++
+---
+title: "Buku & Publikasi"
+description: "Buku dan publikasi NR Technology"
+date: 2026-08-17
+draft: false
+author: "NR Technology"
+
+categories:
+  - Cyber Security
+  - Publikasi
+
+tags:
+  - Buku
+  - E-Book
+  - Publikasi
+  - Cyber Security
+  - Teknologi Informasi
+---
 
 Halaman ini berisi buku, e-book, dan publikasi yang disusun sebagai bagian dari dokumentasi, pembelajaran, dan berbagi pengetahuan di bidang teknologi informasi dan keamanan siber.
 
