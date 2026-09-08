@@ -1863,7 +1863,3 @@ Dengan adanya `create-php-app.sh`, standar tersebut dapat diterapkan secara kons
 - Docker Compose Documentation
 - Laravel Documentation
 - CodeIgniter 4 Documentation
-
-
----
-{{< saweria >}}
