@@ -175,7 +175,7 @@ Periksa status Git:
 
 Untuk mengambil perubahan terbaru:
 
-    git pull --ff-only origin main
+    git pull --ff-only origin main 
 
 Penggunaan `--ff-only` direkomendasikan pada server production agar Git hanya melakukan fast-forward dan tidak membuat merge commit otomatis.
 
