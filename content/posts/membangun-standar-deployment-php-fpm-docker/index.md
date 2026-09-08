@@ -83,10 +83,8 @@ INTERNET
 +-----+------+-------------+
 |            |             |
 v            v             v
-
   myapp        myapp2        myapp3
   PHP 8.3      PHP 8.4       PHP 8.5
-
 |            |             |
 +------------+-------------+
              |
@@ -487,10 +485,7 @@ Contoh PHP 8.3:
 
 ```text
 FROM php:8.3-fpm-bookworm
-```
 
-
-```text
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -508,18 +503,12 @@ RUN apt-get update \
         libwebp-dev \
         libpq-dev \
     && rm -rf /var/lib/apt/lists/*
-```
 
-
-```text
 RUN docker-php-ext-configure gd \
         --with-freetype \
         --with-jpeg \
         --with-webp
-```
 
-
-```text
 RUN docker-php-ext-install -j"$(nproc)" \
         bcmath \
         curl \
@@ -535,21 +524,11 @@ RUN docker-php-ext-install -j"$(nproc)" \
         pdo_pgsql \
         xml \
         zip
-```
 
-
-```text
 RUN pecl install redis \
     && docker-php-ext-enable redis
-```
-
-
-```text
 COPY php.ini /usr/local/etc/php/conf.d/99-production.ini
-```
 
-
-```text
 CMD ["php-fpm", "-F"]
 ```
 
@@ -563,49 +542,28 @@ Contoh:
 
 ```text
 [myapp]
-```
 
-
-```text
 user = www-data
 group = www-data
-```
 
-
-```text
 listen = /run/php/myapp.sock
-```
 
-
-```text
 listen.owner = www-data
 listen.group = www-data
 listen.mode = 0660
-```
 
-
-```text
 pm = dynamic
-```
 
-
-```text
 pm.max_children = 20
 pm.start_servers = 3
 pm.min_spare_servers = 2
 pm.max_spare_servers = 5
 pm.max_requests = 500
-```
 
-
-```text
 request_terminate_timeout = 120s
 request_slowlog_timeout = 10s
 slowlog = /proc/self/fd/2
-```
 
-
-```text
 catch_workers_output = yes
 clear_env = no
 expose_php = Off
@@ -654,48 +612,24 @@ Contoh:
 
 ```text
 services:
-```
 
-
-```text
   php:
     image: local/php:8.3
-```
 
-
-```text
     container_name: myapp-php
-```
 
-
-```text
     restart: unless-stopped
-```
 
-
-```text
     read_only: true
-```
 
-
-```text
     security_opt:
       - no-new-privileges:true
-```
 
-
-```text
     working_dir: /var/www/html
-```
 
-
-```text
     tmpfs:
       - /tmp:rw,noexec,nosuid,size=128m
-```
 
-
-```text
     volumes:
       - /var/apps/myapp/htdocs:/var/www/html:ro
       - /var/apps/myapp/data/writable:/var/www/html/data:rw
@@ -703,42 +637,24 @@ services:
       - /run/php:/run/php:rw
       - /run/mysqld:/run/mysqld:ro
       - /opt/docker-apps/myapp/zz-custom.conf:/usr/local/etc/php-fpm.d/zz-custom.conf:ro
-```
 
-
-```text
     environment:
       TZ: Asia/Jakarta
-```
 
-
-```text
     cpus: "2.0"
     mem_limit: 1g
     pids_limit: 100
-```
 
-
-```text
     ulimits:
       nofile:
         soft: 65535
         hard: 65535
-```
 
-
-```text
     stop_grace_period: 30s
-```
 
-
-```text
     networks:
       - myapp-network
-```
 
-
-```text
 networks:
   myapp-network:
     driver: bridge
@@ -955,27 +871,15 @@ Contoh:
 ```text
 location ~ \.php$ {
     try_files $uri =404;
-```
 
-
-```text
     include fastcgi_params;
-```
 
-
-```text
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     fastcgi_param DOCUMENT_ROOT $document_root;
     fastcgi_param HTTP_PROXY "";
-```
 
-
-```text
     fastcgi_pass unix:/run/php/myapp.sock;
-```
 
-
-```text
     fastcgi_connect_timeout 10s;
     fastcgi_send_timeout 120s;
     fastcgi_read_timeout 120s;
